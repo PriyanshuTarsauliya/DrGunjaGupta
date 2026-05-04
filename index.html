@@ -2705,6 +2705,125 @@
       transform: scale(1.08);
     }
 
+    /* Language Toggle — Animated Pill Switch */
+    .lang-toggle {
+      position: relative;
+      width: 56px;
+      height: 28px;
+      background: linear-gradient(135deg, #fff7ed, #fed7aa);
+      border: 1.5px solid var(--border);
+      border-radius: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .lang-toggle .lang-label {
+      font-size: 10px;
+      font-weight: 700;
+      z-index: 1;
+      transition: opacity 0.3s, transform 0.3s;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .lang-toggle .lang-en {
+      color: #0d9488;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .lang-toggle .lang-hi {
+      color: #d97706;
+      opacity: 0.5;
+      transform: scale(0.85);
+    }
+
+    .lang-toggle .lang-knob {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.04);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-lang="hi"] .lang-toggle {
+      background: linear-gradient(135deg, #fff7ed, #fef3c7);
+      border-color: rgba(217, 119, 6, 0.3);
+    }
+
+    [data-lang="hi"] .lang-toggle .lang-knob {
+      left: calc(100% - 24px);
+      background: #fffbeb;
+      box-shadow: 0 2px 8px rgba(217, 119, 6, 0.25), 0 0 0 1px rgba(217, 119, 6, 0.1);
+    }
+
+    [data-lang="hi"] .lang-toggle .lang-en {
+      opacity: 0.5;
+      transform: scale(0.85);
+    }
+
+    [data-lang="hi"] .lang-toggle .lang-hi {
+      opacity: 1;
+      transform: scale(1);
+      color: #b45309;
+    }
+
+    .lang-toggle:hover .lang-knob {
+      box-shadow: 0 3px 12px rgba(13, 148, 136, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.04);
+      transform: scale(1.08);
+    }
+
+    [data-lang="hi"] .lang-toggle:hover .lang-knob {
+      box-shadow: 0 3px 12px rgba(217, 119, 6, 0.4), 0 0 0 1px rgba(217, 119, 6, 0.15);
+      transform: scale(1.08);
+    }
+
+    [data-theme="dark"] .lang-toggle {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    [data-theme="dark"] .lang-toggle .lang-knob {
+      background: #1e293b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="dark"] .lang-toggle .lang-en {
+      color: #5eead4;
+    }
+
+    [data-theme="dark"] .lang-toggle .lang-hi {
+      color: #fbbf24;
+    }
+
+    [data-theme="dark"][data-lang="hi"] .lang-toggle .lang-knob {
+      left: calc(100% - 24px);
+      box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="dark"][data-lang="hi"] .lang-toggle .lang-hi {
+      color: #fcd34d;
+    }
+
+    [data-theme="dark"] .lang-toggle:hover .lang-knob {
+      box-shadow: 0 3px 12px rgba(94, 234, 212, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+      transform: scale(1.08);
+    }
+
+    [data-theme="dark"][data-lang="hi"] .lang-toggle:hover .lang-knob {
+      box-shadow: 0 3px 12px rgba(251, 191, 36, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+      transform: scale(1.08);
+    }
+
     /* Call Float */
     .call-float {
       position: fixed;
@@ -2784,6 +2903,11 @@
           <i class="fas fa-sun toggle-icon toggle-sun"></i>
           <i class="fas fa-moon toggle-icon toggle-moon"></i>
           <div class="toggle-knob"></div>
+        </div>
+        <div id="langToggle" class="lang-toggle" role="button" tabindex="0" aria-label="Switch Language English / Hindi" title="EN / हिं">
+          <span class="lang-label lang-en">EN</span>
+          <span class="lang-label lang-hi">हिं</span>
+          <div class="lang-knob"></div>
         </div>
         <div class="nav-dropdown">
           <a href="javascript:void(0)" class="nav-cta" id="navBookBtn">Book Appointment <i class="fas fa-chevron-down"
@@ -2887,7 +3011,7 @@
   <section class="about" id="about">
     <div class="about-grid reveal">
       <div class="about-img-wrap">
-        <div class="about-img"><img src="images/Dr Gunja Gupta.jpeg" alt="Dr. Gunja Gupta"></div>
+        <div class="about-img"><img loading="lazy" src="images/Dr Gunja Gupta.jpeg" alt="Dr. Gunja Gupta"></div>
         <div class="about-badge"><span class="num">BHMS</span><span class="txt">CCH · MA (Psycho)</span></div>
       </div>
       <div class="about-content">
@@ -2930,7 +3054,7 @@
     </div>
     <div class="services-grid reveal">
       <div class="service-card" id="service-womens-health">
-        <img src="images/womens_health.png" alt="Women's Health" class="service-img" />
+        <img loading="lazy" src="images/womens_health.png" alt="Women's Health" class="service-img" />
         <div class="service-content">
           <h3>Women's Health</h3>
           <p>Expert treatment for irregular menses, PCOS, fibroids, infertility, and fibroadenoma. Gentle, natural
@@ -2938,7 +3062,7 @@
         </div>
       </div>
       <div class="service-card" id="service-skin">
-        <img src="images/skin_care.png" alt="Skin Care" class="service-img" />
+        <img loading="lazy" src="images/skin_care.png" alt="Skin Care" class="service-img" />
         <div class="service-content">
           <h3>Skin Problems</h3>
           <p>Effective homeopathic solutions for acne, pimples, dermatitis, melasma, and psoriasis — treating from
@@ -2946,7 +3070,7 @@
         </div>
       </div>
       <div class="service-card" id="service-hair">
-        <img src="images/hair_fall.png" alt="Hair Care" class="service-img" />
+        <img loading="lazy" src="images/hair_fall.png" alt="Hair Care" class="service-img" />
         <div class="service-content">
           <h3>Hair Fall Treatment</h3>
           <p>Address the root cause of hair fall with safe, natural homeopathic medicines that promote healthy hair
@@ -2954,7 +3078,7 @@
         </div>
       </div>
       <div class="service-card" id="service-digestive">
-        <img src="images/digestive.png?v=2" alt="Digestive Health" class="service-img" />
+        <img loading="lazy" src="images/digestive.png?v=2" alt="Digestive Health" class="service-img" />
         <div class="service-content">
           <h3>Digestive System</h3>
           <p>Natural treatment for digestive issues including acidity, constipation, IBS, and other gastrointestinal
@@ -2962,7 +3086,7 @@
         </div>
       </div>
       <div class="service-card" id="service-children">
-        <img src="images/children.png" alt="Children's Health" class="service-img" />
+        <img loading="lazy" src="images/children.png" alt="Children's Health" class="service-img" />
         <div class="service-content">
           <h3>Children's Cases</h3>
           <p>Safe, gentle care for children — constipation, behavioural issues, recurrent cough & cold, fever, and
@@ -3107,19 +3231,19 @@
             class="fas fa-chevron-right"></i></button>
         <div class="pf-grid" id="pfGrid">
           <div class="pf-card" style="padding: 0;">
-            <img src="images/101.jpeg" style="width: 100%; height: auto; display: block;"
+            <img loading="lazy" src="images/101.jpeg" style="width: 100%; height: auto; display: block;"
               alt="Patient Feedback Screenshot">
           </div>
           <div class="pf-card" style="padding: 0;">
-            <img src="images/102.jpeg" style="width: 100%; height: auto; display: block;"
+            <img loading="lazy" src="images/102.jpeg" style="width: 100%; height: auto; display: block;"
               alt="Patient Feedback Screenshot">
           </div>
           <div class="pf-card" style="padding: 0;">
-            <img src="images/101.jpeg" style="width: 100%; height: auto; display: block;"
+            <img loading="lazy" src="images/101.jpeg" style="width: 100%; height: auto; display: block;"
               alt="Patient Feedback Screenshot">
           </div>
           <div class="pf-card" style="padding: 0;">
-            <img src="images/102.jpeg" style="width: 100%; height: auto; display: block;"
+            <img loading="lazy" src="images/102.jpeg" style="width: 100%; height: auto; display: block;"
               alt="Patient Feedback Screenshot">
           </div>
           <div class="pf-card">
@@ -3256,53 +3380,53 @@
         <button class="pf-scroll-btn right" aria-label="Scroll right"><i class="fas fa-chevron-right"></i></button>
         <div class="pf-video-grid">
           <div class="pf-video-card">
-            <div class="pf-video-thumb"><video src="images/22.mp4" controls preload="metadata"></video>
+            <div class="pf-video-thumb"><video loading="lazy" src="images/22.mp4" controls preload="metadata"></video>
               <div class="pf-play"><i class="fas fa-play"></i></div>
             </div>
             <div class="pf-video-label">Patient recovery journey<br><span class="pf-video-tag">Verified patient</span>
             </div>
           </div>
           <div class="pf-video-card">
-            <div class="pf-video-thumb"><video src="images/33.mp4" controls preload="metadata"></video>
+            <div class="pf-video-thumb"><video loading="lazy" src="images/33.mp4" controls preload="metadata"></video>
               <div class="pf-play"><i class="fas fa-play"></i></div>
             </div>
             <div class="pf-video-label">Feedback — Piles and Immunity Issues<br><span class="pf-video-tag">Verified
                 patient</span></div>
           </div>
           <div class="pf-video-card">
-            <div class="pf-video-thumb"><video src="images/44.mp4" controls preload="metadata"></video>
+            <div class="pf-video-thumb"><video loading="lazy" src="images/44.mp4" controls preload="metadata"></video>
               <div class="pf-play"><i class="fas fa-play"></i></div>
             </div>
             <div class="pf-video-label">Healing experience review<br><span class="pf-video-tag">Verified patient</span>
             </div>
           </div>
           <div class="pf-video-card">
-            <div class="pf-video-thumb"><video src="images/55.mp4" controls preload="metadata"></video>
+            <div class="pf-video-thumb"><video loading="lazy" src="images/55.mp4" controls preload="metadata"></video>
               <div class="pf-play"><i class="fas fa-play"></i></div>
             </div>
             <div class="pf-video-label">Patient success story<br><span class="pf-video-tag">Verified patient</span>
             </div>
           </div>
           <div class="pf-video-card">
-            <div class="pf-video-thumb"><video src="images/66.mp4" controls preload="metadata"></video>
+            <div class="pf-video-thumb"><video loading="lazy" src="images/66.mp4" controls preload="metadata"></video>
               <div class="pf-play"><i class="fas fa-play"></i></div>
             </div>
             <div class="pf-video-label">Treatment feedback<br><span class="pf-video-tag">Verified patient</span></div>
           </div>
           <div class="pf-video-card">
-            <div class="pf-video-thumb"><video src="images/77.mp4" controls preload="metadata"></video>
+            <div class="pf-video-thumb"><video loading="lazy" src="images/77.mp4" controls preload="metadata"></video>
               <div class="pf-play"><i class="fas fa-play"></i></div>
             </div>
             <div class="pf-video-label">Patient testimonial<br><span class="pf-video-tag">Verified patient</span></div>
           </div>
           <div class="pf-video-card">
-            <div class="pf-video-thumb"><video src="images/88.mp4" controls preload="metadata"></video>
+            <div class="pf-video-thumb"><video loading="lazy" src="images/88.mp4" controls preload="metadata"></video>
               <div class="pf-play"><i class="fas fa-play"></i></div>
             </div>
             <div class="pf-video-label">Recovery experience<br><span class="pf-video-tag">Verified patient</span></div>
           </div>
           <div class="pf-video-card">
-            <div class="pf-video-thumb"><video src="images/99.mp4" controls preload="metadata"></video>
+            <div class="pf-video-thumb"><video loading="lazy" src="images/99.mp4" controls preload="metadata"></video>
               <div class="pf-play"><i class="fas fa-play"></i></div>
             </div>
             <div class="pf-video-label">Healing journey<br><span class="pf-video-tag">Verified patient</span></div>
@@ -3350,7 +3474,7 @@
         session.</p>
     </div>
     <div class="appt-cta-box reveal">
-      <img src="images/appointment_booking.png" alt="Book Appointment Illustration"
+      <img loading="lazy" src="images/appointment_booking.png" alt="Book Appointment Illustration"
         style="width: 240px; height: auto; margin: 0 auto 2rem; display: block; border-radius: 20px; box-shadow: var(--shadow-md);">
       <h3>Schedule Your Consultation</h3>
       <p>Fill out a quick form with your details and preferred timing. We'll confirm your appointment slot at the
@@ -3798,6 +3922,174 @@
     initScrollArrows('pfScrollWrap', '.pf-grid');
     initScrollArrows('videoScrollWrap', '.pf-video-grid');
     initScrollArrows('baScrollWrap', '.ba-masonry');
+
+    // ── Language Toggle (EN / Hindi) ──
+    const langToggleBtn = document.getElementById('langToggle');
+    const savedLang = localStorage.getItem('lang') || 'en';
+
+    // Translation data: [selector, mode('t'=text,'h'=html), hindi]
+    const i18n = [
+      // Nav
+      ['.nav-links a[href="#home"]','t','होम'],
+      ['.nav-links a[href="#about"]','t','परिचय'],
+      ['.nav-links a[href="#services"]','t','सेवाएँ'],
+      ['.nav-links a[href="#testimonials"]','t','समीक्षा'],
+      ['.nav-links a[href="#contact"]','t','संपर्क'],
+      // Mobile menu
+      ['#mobileMenu a[href="#home"]','t','होम'],
+      ['#mobileMenu a[href="#about"]','t','परिचय'],
+      ['#mobileMenu a[href="#services"]','t','सेवाएँ'],
+      ['#mobileMenu a[href="#testimonials"]','t','समीक्षा'],
+      ['#mobileMenu a[href="#contact"]','t','संपर्क'],
+      // Hero
+      ['.hero-badge','h','<i class="fas fa-award"></i> जबलपुर की विश्वसनीय होम्योपैथी क्लिनिक'],
+      ['.hero h1','h','प्राकृतिक रूप से ठीक हों,<br/><em>पूर्ण जीवन जिएँ</em> —<br/>आपकी स्वस्थता यहाँ से शुरू'],
+      ['.hero-content > p','t','सौम्य, प्रभावी होम्योपैथिक उपचार और प्रोफेशनल काउंसलिंग। महिलाओं के स्वास्थ्य से लेकर त्वचा, बच्चों की समस्याओं से लेकर मानसिक स्वास्थ्य तक — हम लक्षण नहीं, मूल कारण का इलाज करते हैं।'],
+      ['.floating-badge.top','h','<i class="fas fa-star"></i> समग्र देखभाल'],
+      ['.floating-badge.bottom','h','<i class="fas fa-check-circle"></i> काउंसलिंग विशेषज्ञ'],
+      // Hero card
+      ['#service-womens-health ~ .stat-label, .card-stats .stat-item:nth-child(1) .stat-label','t','होम्योपैथी'],
+      ['.card-stats .stat-item:nth-child(2) .stat-label','t','प्रमाणित'],
+      ['.card-stats .stat-item:nth-child(3) .stat-label','t','मनोविज्ञान'],
+      ['.card-stats .stat-item:nth-child(4) .stat-label','t','मिनट परामर्श'],
+      // Stats bar
+      ['.stats-bar .stat-counter:nth-child(1) .lbl','t','वर्षों का अनुभव'],
+      ['.stats-bar .stat-counter:nth-child(2) .lbl','t','स्टार रिव्यू'],
+      ['.stats-bar .stat-counter:nth-child(3) .lbl','t','मिनट विस्तृत परामर्श'],
+      ['.stats-bar .stat-counter:nth-child(4) .lbl','t','प्राकृतिक और सुरक्षित उपचार'],
+      // About
+      ['#about .section-tag','t','डॉक्टर के बारे में'],
+      ['#about .section-title','h','डॉ. गुंजा गुप्ता<br/>BHMS, CCH, MA (मनोविज्ञान)'],
+      ['#about .section-sub','t','एक संवेदनशील होम्योपैथिक चिकित्सक जो पूरे व्यक्ति — मन, शरीर और आत्मा — के उपचार में विश्वास करती हैं। डॉ. गुंजा क्लासिकल होम्योपैथी को प्रोफेशनल काउंसलिंग के साथ जोड़कर शारीरिक और भावनात्मक दोनों समस्याओं का समाधान करती हैं।'],
+      ['#about .qual-list li:nth-child(1)','h','<i class="fas fa-graduation-cap"></i> <strong>BHMS</strong> — बैचलर ऑफ होम्योपैथिक मेडिसिन एंड सर्जरी'],
+      ['#about .qual-list li:nth-child(2)','h','<i class="fas fa-certificate"></i> <strong>CCH</strong> — सर्टिफिकेट इन चाइल्ड हेल्थ'],
+      ['#about .qual-list li:nth-child(3)','h','<i class="fas fa-brain"></i> <strong>MA (मनोविज्ञान)</strong> — काउंसलिंग के लिए मनोविज्ञान में मास्टर्स'],
+      ['#about .qual-list li:nth-child(4)','h','<i class="fas fa-comments"></i> व्यवहार संबंधी मामलों के लिए होम्योपैथिक दवाओं के साथ काउंसलिंग'],
+      ['#about .qual-list li:nth-child(5)','h','<i class="fas fa-clock"></i> प्रत्येक परामर्श 30–40 मिनट का विस्तृत मूल्यांकन'],
+      // Services
+      ['#services > .center .section-tag','t','हम क्या इलाज करते हैं'],
+      ['#services > .center .section-title','t','हमारी होम्योपैथिक सेवाएँ'],
+      ['#services > .center .section-sub','t','विभिन्न स्वास्थ्य समस्याओं के लिए व्यापक, प्राकृतिक उपचार — व्यक्तिगत देखभाल और काउंसलिंग सहायता के साथ।'],
+      ['#service-womens-health h3','t','महिला स्वास्थ्य'],
+      ['#service-womens-health p','t','अनियमित मासिक धर्म, PCOS, फाइब्रॉइड, बांझपन और फाइब्रोएडेनोमा का विशेषज्ञ उपचार। हर महिला की अनूठी जरूरतों के अनुसार सौम्य, प्राकृतिक उपचार।'],
+      ['#service-skin h3','t','त्वचा की समस्याएँ'],
+      ['#service-skin p','t','मुँहासे, पिंपल, डर्मेटाइटिस, मेलास्मा और सोरायसिस के लिए प्रभावी होम्योपैथिक उपचार — भीतर से इलाज करके स्थायी, साफ त्वचा।'],
+      ['#service-hair h3','t','बालों का झड़ना उपचार'],
+      ['#service-hair p','t','बालों के झड़ने के मूल कारण का सुरक्षित, प्राकृतिक होम्योपैथिक दवाओं से इलाज जो बिना दुष्प्रभाव के स्वस्थ बालों के विकास को बढ़ावा देती हैं।'],
+      ['#service-digestive h3','t','पाचन तंत्र'],
+      ['#service-digestive p','t','एसिडिटी, कब्ज, IBS और अन्य पाचन समस्याओं के लिए प्राकृतिक उपचार — स्थायी आंत स्वास्थ्य के लिए।'],
+      ['#service-children h3','t','बच्चों के मामले'],
+      ['#service-children p','t','बच्चों की सुरक्षित, सौम्य देखभाल — कब्ज, व्यवहार संबंधी समस्याएँ, बार-बार खांसी और सर्दी, बुखार और पेट दर्द का प्राकृतिक उपचार।'],
+      // Why Us
+      ['#why .section-tag','t','हमें क्यों चुनें'],
+      ['#why .section-title','t','डॉ. गुंजा गुप्ता की विशेषता'],
+      ['#why .section-sub','t','एक अनूठा दृष्टिकोण जो होम्योपैथी को मनोवैज्ञानिक विशेषज्ञता के साथ जोड़ता है।'],
+      ['#why .why-card:nth-child(1) h3','t','100% प्राकृतिक'],
+      ['#why .why-card:nth-child(1) p','t','सुरक्षित, दुष्प्रभाव-मुक्त होम्योपैथिक दवाएँ जो आपके शरीर के प्राकृतिक संतुलन को बहाल करती हैं।'],
+      ['#why .why-card:nth-child(2) h3','t','दवाएँ + काउंसलिंग'],
+      ['#why .why-card:nth-child(2) p','t','व्यवहार और भावनात्मक मामलों के लिए होम्योपैथिक उपचार और प्रोफेशनल काउंसलिंग का अनूठा संयोजन।'],
+      ['#why .why-card:nth-child(3) h3','t','30–40 मिनट सत्र'],
+      ['#why .why-card:nth-child(3) p','t','हर अपॉइंटमेंट 30–40 मिनट का विस्तृत परामर्श — कोई जल्दबाजी नहीं, आपकी स्थिति की गहन समझ।'],
+      ['#why .why-card:nth-child(4) h3','t','मूल कारण उपचार'],
+      ['#why .why-card:nth-child(4) p','t','हम सिर्फ लक्षण नहीं दबाते — स्थायी, स्थायी राहत के लिए अंतर्निहित कारण की पहचान और उपचार करते हैं।'],
+      // Safe Hands
+      ['#safehands h2','h','आप <span>सुरक्षित हाथों</span> में हैं'],
+      ['.safe-hands-quote','t','"सबसे अच्छी होम्योपैथी क्लिनिक जहाँ मैंने इलाज कराया है। डॉ. गुंजा मैम बहुत विनम्र और अनुभवी हैं। उन्होंने हमें परिवार की तरह माना — धैर्य से सुना, हमारी चिंताओं को समझा, और सबसे प्रभावी प्राकृतिक उपचार दिया। उनकी काउंसलिंग भी बहुत सहायक है। होम्योपैथिक उपचार के लिए अत्यधिक अनुशंसित!"'],
+      ['.progress-bars .progress-item:nth-child(1) strong','t','उपचार'],
+      ['.progress-bars .progress-item:nth-child(2) strong','t','रोगी देखभाल'],
+      ['.progress-bars .progress-item:nth-child(3) strong','t','रोगी संतुष्टि'],
+      ['.safe-hands-visual .trust-card:nth-child(1) h4','t','विशेषज्ञ होम्योपैथ'],
+      ['.safe-hands-visual .trust-card:nth-child(1) p','t','BHMS, CCH प्रमाणित, मनोविज्ञान में मास्टर्स — समग्र रोगी देखभाल के लिए।'],
+      ['.safe-hands-visual .trust-card:nth-child(2) h4','t','100% सुरक्षित और प्राकृतिक'],
+      ['.safe-hands-visual .trust-card:nth-child(2) p','t','शून्य दुष्प्रभाव — सभी उम्र के लिए उपयुक्त सौम्य होम्योपैथिक दवाएँ।'],
+      ['.safe-hands-visual .trust-card:nth-child(3) h4','t','संवेदनशील काउंसलिंग'],
+      ['.safe-hands-visual .trust-card:nth-child(3) p','t','हर मरीज को समर्पित समय, सहानुभूति और प्रोफेशनल काउंसलिंग सहायता मिलती है।'],
+      ['.safe-hands-visual .trust-card:nth-child(4) h4','t','मूल कारण उपचार'],
+      ['.safe-hands-visual .trust-card:nth-child(4) p','t','हम लक्षण नहीं दबाते — स्थायी राहत के लिए अंतर्निहित कारण का इलाज करते हैं।'],
+      // Testimonials header
+      ['#testimonials > .center .section-tag','t','रोगी सफलता'],
+      ['#testimonials > .center .section-title','t','वास्तविक परिणाम। वास्तविक कहानियाँ।'],
+      ['#testimonials > .center .section-sub','t','हमारे रोगियों के शब्दों और परिणामों से प्राकृतिक उपचार की शक्ति का अनुभव करें।'],
+      ['.pf-stat:nth-child(1) .pf-stat-label','t','औसत रेटिंग'],
+      ['.pf-stat:nth-child(2) .pf-stat-label','t','प्लेटफॉर्म पर विश्वास'],
+      // Appointment CTA
+      ['#appointment .section-tag','t','शुरू करें'],
+      ['#appointment .section-title','t','अपना अपॉइंटमेंट बुक करें'],
+      ['#appointment .section-sub','t','नीचे क्लिक करके अपॉइंटमेंट फॉर्म भरें। हर परामर्श 30–40 मिनट का विस्तृत सत्र है।'],
+      ['.appt-cta-box h3','t','अपना परामर्श शेड्यूल करें'],
+      ['.appt-cta-box > p','t','अपने विवरण और पसंदीदा समय के साथ एक छोटा फॉर्म भरें। हम जल्द से जल्द आपके अपॉइंटमेंट की पुष्टि करेंगे।'],
+      ['.appt-feature:nth-child(1)','h','<i class="fas fa-clock"></i> 30–40 मिनट सत्र'],
+      ['.appt-feature:nth-child(2)','h','<i class="fas fa-leaf"></i> 100% प्राकृतिक उपचार'],
+      ['.appt-feature:nth-child(3)','h','<i class="fas fa-comments"></i> काउंसलिंग शामिल'],
+      // FAQ
+      ['#faq .section-tag','t','सामान्य प्रश्न'],
+      ['#faq .section-title','t','अक्सर पूछे जाने वाले प्रश्न'],
+      ['#faq .section-sub','t','होम्योपैथिक उपचार और हमारी क्लिनिक के बारे में सबसे आम प्रश्नों के उत्तर खोजें।'],
+      ['.faq-item:nth-child(1) .faq-question span','t','क्या होम्योपैथिक दवाएँ बच्चों और गर्भवती महिलाओं के लिए सुरक्षित हैं?'],
+      ['.faq-item:nth-child(1) .faq-answer p','t','हाँ, बिल्कुल। होम्योपैथिक दवाएँ अत्यधिक तनुकृत और 100% प्राकृतिक हैं, जो उन्हें पूरी तरह से सुरक्षित, सौम्य और दुष्प्रभाव-मुक्त बनाती हैं। ये शिशुओं, बढ़ते बच्चों, गर्भवती महिलाओं और बुजुर्गों के लिए उपयुक्त हैं।'],
+      ['.faq-item:nth-child(2) .faq-question span','t','परामर्श में कितना समय लगता है?'],
+      ['.faq-item:nth-child(2) .faq-answer p','t','हम विस्तृत, समग्र देखभाल पर गर्व करते हैं। डॉ. गुंजा गुप्ता के साथ एक सामान्य परामर्श लगभग 30 से 40 मिनट का होता है। इससे वे शारीरिक लक्षणों और किसी भी अंतर्निहित भावनात्मक चिंताओं के मूल कारण को समझ पाती हैं।'],
+      ['.faq-item:nth-child(3) .faq-question span','t','क्या आप ऑनलाइन या वीडियो परामर्श प्रदान करते हैं?'],
+      ['.faq-item:nth-child(3) .faq-answer p','t','हाँ, हम करते हैं। पहले परामर्श के लिए व्यक्तिगत मिलना बेहतर है, लेकिन हम बाहर के मरीजों और फॉलो-अप के लिए फोन और वीडियो परामर्श प्रदान करते हैं। हम दवाइयाँ सीधे आपके घर भी भेज सकते हैं।'],
+      ['.faq-item:nth-child(4) .faq-question span','t','आप काउंसलिंग से कौन-सी व्यवहार संबंधी समस्याओं का इलाज करते हैं?'],
+      ['.faq-item:nth-child(4) .faq-answer p','t','मनोविज्ञान में मास्टर्स डिग्री के साथ, डॉ. गुंजा गुप्ता चिंता, पैनिक अटैक, अवसाद, तनाव प्रबंधन और बच्चों की व्यवहार संबंधी समस्याओं के लिए होम्योपैथिक दवाओं के साथ प्रोफेशनल काउंसलिंग को जोड़ती हैं।'],
+      // Contact
+      ['#contact .section-tag','t','हमें खोजें'],
+      ['#contact .section-title','t','क्लिनिक पर आएँ'],
+      ['.contact-info h3','t','संपर्क करें'],
+      // Footer
+      ['.footer-brand > p','t','होम्योपैथी और प्रोफेशनल काउंसलिंग द्वारा प्राकृतिक उपचार। हम लक्षण नहीं — मूल कारण का इलाज करते हैं — स्थायी स्वास्थ्य के लिए।'],
+      ['.footer-col:nth-child(2) h4','t','त्वरित लिंक'],
+      ['.footer-col:nth-child(3) h4','t','सेवाएँ'],
+      ['.footer-col:nth-child(4) h4','t','संपर्क'],
+      ['.footer-bottom span:nth-child(2)','t','प्राकृतिक रूप से ठीक हों, पूर्ण जीवन जिएँ'],
+    ];
+
+    // Store original content
+    const originals = new Map();
+
+    function applyLang(lang) {
+      i18n.forEach(([sel, mode, hi]) => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+        if (!originals.has(sel)) {
+          originals.set(sel, mode === 'h' ? el.innerHTML : el.textContent);
+        }
+        if (lang === 'hi') {
+          if (mode === 'h') el.innerHTML = hi;
+          else el.textContent = hi;
+        } else {
+          const orig = originals.get(sel);
+          if (mode === 'h') el.innerHTML = orig;
+          else el.textContent = orig;
+        }
+      });
+    }
+
+    if (savedLang === 'hi') {
+      document.documentElement.setAttribute('data-lang', 'hi');
+      applyLang('hi');
+    }
+
+    langToggleBtn.addEventListener('click', () => {
+      const isHindi = document.documentElement.getAttribute('data-lang') === 'hi';
+      if (isHindi) {
+        document.documentElement.removeAttribute('data-lang');
+        localStorage.setItem('lang', 'en');
+        applyLang('en');
+      } else {
+        document.documentElement.setAttribute('data-lang', 'hi');
+        localStorage.setItem('lang', 'hi');
+        applyLang('hi');
+      }
+    });
+
+    langToggleBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        langToggleBtn.click();
+      }
+    });
   </script>
 </body>
 
