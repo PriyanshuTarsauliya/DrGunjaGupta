@@ -10,6 +10,12 @@
   <meta name="keywords"
     content="Homeopathy, Dr. Gunja Gupta, Homeopathic Clinic Jabalpur, Vijay Nagar, wellness clinic, women's health homeopathy, counseling Jabalpur, PCOS treatment homeopathy, hair fall homeopathy, safe treatments" />
   <link rel="icon" href="images/Dr Gunja Gupta.jpeg" type="image/jpeg" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0d9488" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Dr. Gunja Gupta" />
   <meta property="og:title" content="Dr. Gunja Gupta — Homeopathy & Wellness Clinic, Jabalpur" />
   <meta property="og:description"
     content="Natural homeopathic treatment for women's health, skin, hair, children & mental wellness." />
@@ -4090,6 +4096,15 @@
         langToggleBtn.click();
       }
     });
+
+    // ── PWA: Service Worker Registration ──
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('SW registered:', reg.scope))
+          .catch(err => console.log('SW registration failed:', err));
+      });
+    }
   </script>
 </body>
 
