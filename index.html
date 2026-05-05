@@ -1188,15 +1188,18 @@
       padding: 1.25rem;
       position: relative;
       overflow: hidden;
-      transition: border-color 0.2s, transform 0.3s;
-      min-width: 260px;
-      max-width: 280px;
+      transition: border-color 0.2s, transform 0.3s, box-shadow 0.2s;
+      min-width: 280px;
+      max-width: 320px;
       flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
     }
 
     .pf-card:hover {
-      border-color: var(--teal-pale);
-      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
     }
 
     /* -- scroll arrows -- */
@@ -1243,66 +1246,91 @@
     /* -- card inner elements -- */
     .pf-card-header {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
     }
 
     .pf-avatar {
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 600;
+      font-size: 1.1rem;
+      font-weight: 500;
       flex-shrink: 0;
     }
 
-    .pf-av-teal {
-      background: var(--teal-pale);
-      color: var(--teal-dark);
-    }
+    .pf-av-teal { background: #e0f2f1; color: #00796b; }
+    .pf-av-blue { background: #e8f0fe; color: #1967d2; }
+    .pf-av-amber { background: #fef7e0; color: #b06000; }
+    .pf-av-red { background: #fce8e6; color: #c5221f; }
+    .pf-av-green { background: #e6f4ea; color: #137333; }
+    .pf-av-brown { background: #efebe9; color: #5d4037; }
 
-    .pf-av-blue {
-      background: #e0efff;
-      color: #1a6fbf;
-    }
-
-    .pf-av-amber {
-      background: #fef3cd;
-      color: #8a6d0e;
-    }
-
-    .pf-av-red {
-      background: #fde8e8;
-      color: #b33a3a;
+    .pf-card-header-info {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
     }
 
     .pf-name {
-      font-size: 0.88rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 2px;
     }
 
-    .pf-time {
-      font-size: 0.72rem;
+    .pf-reviews-count {
+      font-size: 0.8rem;
       color: var(--text-muted);
+    }
+
+    .pf-dots {
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      padding: 0 4px;
+    }
+
+    .pf-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
     }
 
     .pf-stars {
       display: flex;
       gap: 2px;
-      margin-bottom: 8px;
-      font-size: 0.78rem;
-      color: #e0a800;
+      font-size: 0.85rem;
+      color: #fbbc04;
+    }
+
+    .pf-time {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .pf-badge-new {
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
     }
 
     .pf-text {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
-      line-height: 1.65;
+      line-height: 1.5;
     }
 
     .pf-text-lg {
@@ -1311,16 +1339,33 @@
       line-height: 1.75;
     }
 
+    .pf-translated {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+    
+    .pf-translated a {
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    .pf-like {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 12px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .pf-like i {
+      color: #ea4335;
+    }
+
     .pf-mini-quote {
-      position: absolute;
-      bottom: 6px;
-      right: 14px;
-      font-size: 2rem;
-      color: var(--border);
-      font-family: 'Playfair Display', serif;
-      line-height: 1;
-      opacity: 0.5;
-      pointer-events: none;
+      display: none;
     }
 
     /* -- divider -- */
@@ -3236,137 +3281,194 @@
         <button class="pf-scroll-btn right" id="pfScrollRight" aria-label="Scroll right"><i
             class="fas fa-chevron-right"></i></button>
         <div class="pf-grid" id="pfGrid">
-          <div class="pf-card" style="padding: 0;">
-            <img loading="lazy" src="images/101.jpeg" style="width: 100%; height: auto; display: block;"
-              alt="Patient Feedback Screenshot">
-          </div>
-          <div class="pf-card" style="padding: 0;">
-            <img loading="lazy" src="images/102.jpeg" style="width: 100%; height: auto; display: block;"
-              alt="Patient Feedback Screenshot">
-          </div>
-          <div class="pf-card" style="padding: 0;">
-            <img loading="lazy" src="images/101.jpeg" style="width: 100%; height: auto; display: block;"
-              alt="Patient Feedback Screenshot">
-          </div>
-          <div class="pf-card" style="padding: 0;">
-            <img loading="lazy" src="images/102.jpeg" style="width: 100%; height: auto; display: block;"
-              alt="Patient Feedback Screenshot">
-          </div>
+          
           <div class="pf-card">
-            <div class="pf-mini-quote">"</div>
+            <div class="pf-card-header">
+              <div class="pf-avatar pf-av-green">S</div>
+              <div class="pf-card-header-info">
+                <div class="pf-name">Syed Firdosh</div>
+                <div class="pf-reviews-count">2 reviews</div>
+              </div>
+              <div class="pf-dots">&#8942;</div>
+            </div>
+            <div class="pf-rating-row">
+              <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="pf-time">4 hours ago</div>
+              <div class="pf-badge-new">New</div>
+            </div>
+            <p class="pf-text">I would like to share my experience with fibroadenoma. I was diagnosed after noticing a small lump, which initially made me quite anxious. However, with proper guidance and care, my condition has remained stable, and I feel much better now.</p>
+            <p class="pf-text" style="margin-top:8px;">The pain and discomfort are minimal, and I have been able to manage it well. Overall, my experience has been positive, and I feel more aware and in control of my health.</p>
+          </div>
+          
+          <div class="pf-card">
+            <div class="pf-card-header">
+              <div class="pf-avatar pf-av-brown">R</div>
+              <div class="pf-card-header-info">
+                <div class="pf-name">Riya Ahuja</div>
+                <div class="pf-reviews-count">2 reviews</div>
+              </div>
+              <div class="pf-dots">&#8942;</div>
+            </div>
+            <div class="pf-rating-row">
+              <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="pf-time">4 hours ago</div>
+              <div class="pf-badge-new">New</div>
+            </div>
+            <p class="pf-text">I took treatment from Dr. Gunja. I was feeling weak, I took treatment from him for 1 month. My body got treated very well, the effect came quickly, the weakness of the body got energy and hair. Thank you doctor Gunja</p>
+            <div class="pf-translated">Translated by Google &middot; <a href="#">See original (Hindi)</a></div>
+            <div class="pf-like"><i class="fas fa-heart"></i> 1</div>
+          </div>
+          
+          <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-blue">D</div>
-              <div>
+              <div class="pf-card-header-info">
                 <div class="pf-name">Dr. Pratilpal Rajpali</div>
-                <div class="pf-time">a year ago</div>
+                <div class="pf-reviews-count">1 review</div>
               </div>
+              <div class="pf-dots">&#8942;</div>
             </div>
-            <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="pf-rating-row">
+              <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="pf-time">a year ago</div>
+            </div>
             <p class="pf-text">Dr. Gunja is very intelligent and knowledgeable in Jabalpur. Very dedicated towards
               patients and their diagnosis. She is god gift for the Jabalpur periphery. Online consultation also
               available.</p>
           </div>
+          
           <div class="pf-card">
-            <div class="pf-mini-quote">"</div>
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-teal">DG</div>
-              <div>
+              <div class="pf-card-header-info">
                 <div class="pf-name">Diwakar Gupta</div>
-                <div class="pf-time">a year ago</div>
+                <div class="pf-reviews-count">1 review</div>
               </div>
+              <div class="pf-dots">&#8942;</div>
             </div>
-            <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="pf-rating-row">
+              <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="pf-time">a year ago</div>
+            </div>
             <p class="pf-text">Incredibly knowledgeable, attentive, and compassionate. Personalized treatment brought
               significant relief from a chronic health issue I had for years.</p>
           </div>
+          
           <div class="pf-card">
-            <div class="pf-mini-quote">"</div>
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-amber">A</div>
-              <div>
+              <div class="pf-card-header-info">
                 <div class="pf-name">Anurag Gupta</div>
-                <div class="pf-time">a year ago</div>
+                <div class="pf-reviews-count">3 reviews</div>
               </div>
+              <div class="pf-dots">&#8942;</div>
             </div>
-            <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="pf-rating-row">
+              <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="pf-time">a year ago</div>
+            </div>
             <p class="pf-text">Very thorough homeopathic doctor who gives few focused medicines after thorough
               examination. Thanks doctor!</p>
           </div>
+          
           <div class="pf-card">
-            <div class="pf-mini-quote">"</div>
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-blue">GL</div>
-              <div>
+              <div class="pf-card-header-info">
                 <div class="pf-name">Girja Lashkari</div>
-                <div class="pf-time">a year ago</div>
+                <div class="pf-reviews-count">1 review</div>
               </div>
+              <div class="pf-dots">&#8942;</div>
             </div>
-            <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="pf-rating-row">
+              <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="pf-time">a year ago</div>
+            </div>
             <p class="pf-text">Dr. Gunja is brilliant, polite, knowledgeable and most humble. She has excellent command
               on treatment of diseases.</p>
           </div>
+          
           <div class="pf-card">
-            <div class="pf-mini-quote">"</div>
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-teal">AS</div>
-              <div>
+              <div class="pf-card-header-info">
                 <div class="pf-name">Anil Sen</div>
-                <div class="pf-time">6 months ago</div>
+                <div class="pf-reviews-count">2 reviews</div>
               </div>
+              <div class="pf-dots">&#8942;</div>
             </div>
-            <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="pf-rating-row">
+              <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="pf-time">6 months ago</div>
+            </div>
             <p class="pf-text">Very good experience, she understands everyone's feelings and has intelligent knowledge
               about homeopathy treatment in Jabalpur.</p>
           </div>
+          
           <div class="pf-card">
-            <div class="pf-mini-quote">"</div>
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-red">RM</div>
-              <div>
+              <div class="pf-card-header-info">
                 <div class="pf-name">Rubi Mishra</div>
-                <div class="pf-time">3 months ago</div>
+                <div class="pf-reviews-count">1 review</div>
               </div>
+              <div class="pf-dots">&#8942;</div>
             </div>
-            <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="pf-rating-row">
+              <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="pf-time">3 months ago</div>
+            </div>
             <p class="pf-text">Great experience with mam — great doctor, took time to listen, attentive and truly cares
               about patient. Highly recommend!</p>
           </div>
+          
           <div class="pf-card">
-            <div class="pf-mini-quote">"</div>
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-amber">GS</div>
-              <div>
+              <div class="pf-card-header-info">
                 <div class="pf-name">Garima Saxena</div>
-                <div class="pf-time">a year ago</div>
+                <div class="pf-reviews-count">5 reviews</div>
               </div>
+              <div class="pf-dots">&#8942;</div>
             </div>
-            <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="pf-rating-row">
+              <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="pf-time">a year ago</div>
+            </div>
             <p class="pf-text">One of the finest doctors who goes in depth to understand, empathise and provides
               feasible treatment. Strongly recommended.</p>
           </div>
+          
           <div class="pf-card">
-            <div class="pf-mini-quote">"</div>
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-blue">BA</div>
-              <div>
+              <div class="pf-card-header-info">
                 <div class="pf-name">Betzy Aibel</div>
-                <div class="pf-time">a year ago</div>
+                <div class="pf-reviews-count">1 review</div>
               </div>
+              <div class="pf-dots">&#8942;</div>
             </div>
-            <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="pf-rating-row">
+              <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="pf-time">a year ago</div>
+            </div>
             <p class="pf-text">An honest, dedicated and committed doctor I have come across in my life. Will surely
               recommend everyone, especially online consulting — it's too good.</p>
           </div>
+          
           <div class="pf-card">
-            <div class="pf-mini-quote">"</div>
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-teal">AG</div>
-              <div>
+              <div class="pf-card-header-info">
                 <div class="pf-name">A G</div>
-                <div class="pf-time">a year ago</div>
+                <div class="pf-reviews-count">1 review</div>
               </div>
+              <div class="pf-dots">&#8942;</div>
             </div>
-            <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="pf-rating-row">
+              <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <div class="pf-time">a year ago</div>
+            </div>
             <p class="pf-text">Really great handling for kids and female patients. Thorough follow-up and great
               attention to details with good case history.</p>
           </div>
