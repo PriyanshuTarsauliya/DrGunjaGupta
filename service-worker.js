@@ -1,4 +1,4 @@
-const CACHE_NAME = 'drgunja-v1';
+const CACHE_NAME = 'drgunja-v4';
 const OFFLINE_URLS = [
   './',
   './index.html',
@@ -25,13 +25,23 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
-// Fetch — network first, fallback to cache
+// Fetch — network first, fallback to cache (only for same-origin GET requests)
 self.addEventListener('fetch', event => {
+  // Only handle same-origin GET requests to avoid breaking or hanging cross-origin CDNs/Fonts
+  if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+
+  // Bypass service worker for VS Code Live Preview and developer tools to prevent reload loops/pending states
+  if (event.request.url.includes('__vscode_livepreview_') || event.request.url.includes('hot-reload')) {
+    return;
+  }
+
   event.respondWith(
     fetch(event.request)
       .then(response => {
         // Cache successful responses for offline use
-        if (response.ok && event.request.method === 'GET') {
+        if (response.ok) {
           const clone = response.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         }
