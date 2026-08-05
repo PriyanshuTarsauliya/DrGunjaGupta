@@ -1,0 +1,10 @@
+# Source library repos (reference only, not needed in production)
+animate-ui/
+inspira-ui/
+lenis/
+
+# OS/IDE files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

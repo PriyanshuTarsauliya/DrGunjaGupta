@@ -9,10 +9,11 @@
     content="Dr. Gunja Gupta's Homeopathy & Wellness Clinic in Vijay Nagar, Jabalpur. Expert homeopathic treatment for women's health, skin, hair, children's issues, anxiety, depression & counselling. BHMS, CCH, MA(Psychology)." />
   <meta name="keywords"
     content="Homeopathy, Dr. Gunja Gupta, Homeopathic Clinic Jabalpur, Vijay Nagar, wellness clinic, women's health homeopathy, counseling Jabalpur, PCOS treatment homeopathy, hair fall homeopathy, safe treatments" />
-  <link rel="icon" href="images/Dr Gunja Gupta.jpeg" type="image/jpeg" />
+  <link rel="icon" href="images/clinic_icon.png" type="image/png" />
+  <link rel="shortcut icon" href="images/clinic_icon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="images/clinic_icon.png" />
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#0d9488" />
-  <link rel="apple-touch-icon" href="icons/icon-192.png" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Dr. Gunja Gupta" />
@@ -85,8 +86,15 @@
       --shadow-lg: 0 20px 40px -5px rgba(13, 148, 136, 0.15), 0 10px 10px -5px rgba(13, 148, 136, 0.04);
     }
 
-    html {
-      scroll-behavior: smooth;
+    /* Lenis smooth scroll CSS */
+    html.lenis, html.lenis body {
+      height: auto;
+    }
+    .lenis:not(.lenis-autoToggle).lenis-stopped {
+      overflow: clip;
+    }
+    .lenis.lenis-smooth iframe {
+      pointer-events: none;
     }
 
     body {
@@ -136,23 +144,24 @@
     .logo-icon {
       width: 44px;
       height: 44px;
-      background: linear-gradient(135deg, var(--teal-light), var(--teal));
-      border-radius: 12px;
+      background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 8px 16px rgba(13, 148, 136, 0.2);
-      transform: rotate(-5deg);
-      transition: transform 0.3s ease;
+      overflow: visible;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .logo:hover .logo-icon {
-      transform: rotate(0);
+      transform: scale(1.12) rotate(-4deg);
     }
 
-    .logo-icon i {
-      color: #fff;
-      font-size: 20px;
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 4px 10px rgba(13, 148, 136, 0.2));
     }
 
     .logo-text {
@@ -2932,6 +2941,295 @@
         font-size: 22px;
       }
     }
+
+    /* ══════ INSPIRA-UI: SPARKLES ══════ */
+    .sparkle-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .sparkle-particle {
+      position: absolute;
+      pointer-events: none;
+      z-index: 10;
+      animation: sparkleAnim var(--dur, 1.4s) ease-in-out forwards;
+    }
+    .sparkle-particle svg {
+      display: block;
+    }
+    @keyframes sparkleAnim {
+      0% { opacity: 0; transform: scale(0) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1) rotate(90deg); }
+      100% { opacity: 0; transform: scale(0) rotate(180deg); }
+    }
+
+    /* ══════ INSPIRA-UI: TEXT BLUR REVEAL ══════ */
+    .blur-reveal-word {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(12px);
+      transform: translateY(8px);
+      animation: blurRevealIn 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    @keyframes blurRevealIn {
+      to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+      }
+    }
+
+    /* ══════ INSPIRA-UI: BORDER BEAM ══════ */
+    .border-beam-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .border-beam-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 2px;
+      background: conic-gradient(from var(--beam-angle, 0deg), transparent 40%, var(--teal-light) 50%, var(--teal) 55%, transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: borderBeamSpin 3s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 5;
+      pointer-events: none;
+    }
+    .border-beam-card:hover::before {
+      opacity: 1;
+    }
+    @property --beam-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    @keyframes borderBeamSpin {
+      to { --beam-angle: 360deg; }
+    }
+
+    /* ══════ INSPIRA-UI: METEOR EFFECT ══════ */
+    .meteor-container {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .meteor {
+      position: absolute;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(45, 212, 191, 0.8), transparent);
+      border-radius: 50%;
+      animation: meteorFall var(--m-dur, 3s) var(--m-delay, 0s) linear infinite;
+      opacity: 0;
+    }
+    .meteor::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(45, 212, 191, 0.9);
+      box-shadow: 0 0 8px 2px rgba(45, 212, 191, 0.4);
+      transform: translateX(-1px);
+    }
+    @keyframes meteorFall {
+      0% { opacity: 0; transform: translateY(-120px) translateX(0) rotate(215deg); }
+      5% { opacity: 1; }
+      60% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(600px) translateX(-300px) rotate(215deg); }
+    }
+
+    /* ══════ INSPIRA-UI: SHIMMER TEXT ══════ */
+    .shimmer-text {
+      background: linear-gradient(110deg, currentColor 35%, var(--teal-light) 50%, currentColor 65%);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerSweep 3s ease-in-out infinite;
+    }
+    @keyframes shimmerSweep {
+      0% { background-position: 300% center; }
+      100% { background-position: -300% center; }
+    }
+
+    /* ══════ INSPIRA-UI: GLOW BORDER ON SERVICE CARDS ══════ */
+    .service-card.border-beam-card::before {
+      border-radius: 24px;
+    }
+
+    /* ══════ ANIMATE-UI: STAGGERED SECTION REVEALS ══════ */
+    .reveal-stagger {
+      opacity: 0;
+      transform: translateY(60px) scale(0.96);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-stagger.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Slide-in left/right for why-cards */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible, .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Spring bounce for trust cards */
+    .reveal-bounce {
+      opacity: 0;
+      transform: translateY(40px) scale(0.9);
+      transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .reveal-bounce.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* ══════ ANIMATE-UI: MAGNETIC TILT ══════ */
+    .magnetic-tilt {
+      transition: transform 0.2s ease-out;
+      will-change: transform;
+    }
+
+    /* ══════ ANIMATE-UI: RIPPLE CLICK ══════ */
+    .btn-primary, .btn-outline, .book-google-btn, .nav-cta {
+      position: relative;
+      overflow: hidden;
+    }
+    .ripple-effect {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(0);
+      animation: rippleExpand 0.6s ease-out forwards;
+      pointer-events: none;
+      z-index: 10;
+    }
+    @keyframes rippleExpand {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* ══════ ANIMATE-UI: MAGNETIC BUTTON HOVER ══════ */
+    .magnetic-btn {
+      transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+
+    /* ══════ ANIMATE-UI: NAV LINK STAGGER ══════ */
+    .nav-links li {
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: navLinkIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .nav-links li:nth-child(1) { animation-delay: 0.1s; }
+    .nav-links li:nth-child(2) { animation-delay: 0.18s; }
+    .nav-links li:nth-child(3) { animation-delay: 0.26s; }
+    .nav-links li:nth-child(4) { animation-delay: 0.34s; }
+    .nav-links li:nth-child(5) { animation-delay: 0.42s; }
+    @keyframes navLinkIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════ INSPIRA-UI: FLOATING PARTICLE BG ══════ */
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-particle {
+      position: absolute;
+      width: var(--p-size, 4px);
+      height: var(--p-size, 4px);
+      background: var(--teal-light);
+      border-radius: 50%;
+      opacity: var(--p-opacity, 0.25);
+      animation: particleFloat var(--p-dur, 8s) var(--p-delay, 0s) ease-in-out infinite;
+    }
+    @keyframes particleFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -40px) scale(1.2); }
+      50% { transform: translate(-20px, -80px) scale(0.8); }
+      75% { transform: translate(40px, -30px) scale(1.1); }
+    }
+
+    /* ══════ INSPIRA-UI: HERO PARALLAX LAYERS ══════ */
+    .hero::before, .hero::after {
+      transition: transform 0.1s linear;
+      will-change: transform;
+    }
+
+    /* ══════ INSPIRA-UI: NUMBER TICKER (ODOMETER) ══════ */
+    .digit-roller {
+      display: inline-flex;
+      overflow: hidden;
+      height: 1.1em;
+      vertical-align: bottom;
+    }
+    .digit-roller-inner {
+      display: flex;
+      flex-direction: column;
+      transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+    .digit-roller-num {
+      height: 1.1em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ══════ GPU HINTS ══════ */
+    .hero-card, .service-card, .why-card, .trust-card, .floating-badge, .pf-card {
+      will-change: transform;
+    }
+
+    /* ══════ ACCESSIBILITY: REDUCE MOTION ══════ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .sparkle-particle, .meteor, .hero-particle {
+        display: none !important;
+      }
+      .blur-reveal-word {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+      }
+      .reveal, .reveal-stagger, .reveal-left, .reveal-right, .reveal-bounce {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -2941,7 +3239,7 @@
   <nav id="navbar">
     <div class="nav-inner">
       <div class="logo">
-        <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+        <div class="logo-icon"><img src="images/clinic_icon.png" alt="Dr. Gunja Gupta Logo" class="logo-img" /></div>
         <div class="logo-text">Dr. Gunja Gupta<span>Homeopathy & Wellness</span></div>
       </div>
       <ul class="nav-links">
@@ -2998,10 +3296,12 @@
 
   <!-- HERO -->
   <section class="hero" id="home">
+    <!-- INSPIRA-UI: Floating Particles -->
+    <div class="hero-particles" id="heroParticles"></div>
     <div class="hero-content">
       <div class="hero-badge"><i class="fas fa-award"></i> Trusted Homeopathy Clinic in Jabalpur</div>
-      <h1>Heal Naturally,<br /><em>Live Fully</em> —<br />Your Wellness Starts Here</h1>
-      <p>Gentle, effective homeopathic treatment combined with professional counselling. From women's health to skin
+      <h1>Heal Naturally,<br /><em class="sparkle-wrap" id="heroSparkle">Live Fully</em> —<br />Your Wellness Starts Here</h1>
+      <p class="hero-subtitle-blur" id="heroSubtitle">Gentle, effective homeopathic treatment combined with professional counselling. From women's health to skin
         care, children's issues to mental wellness — we treat the root cause, not just symptoms.</p>
       <div class="hero-btns">
         <div class="nav-dropdown" style="z-index: 10;">
@@ -3026,7 +3326,7 @@
     </div>
     <div class="hero-visual">
       <div style="position:relative">
-        <div class="hero-card">
+        <div class="hero-card magnetic-tilt border-beam-card" id="heroCard">
           <div class="dr-avatar"><img src="images/Dr Gunja Gupta.jpeg" alt="Dr. Gunja Gupta"></div>
           <h3>Dr. Gunja Gupta</h3>
           <p class="subtitle">BHMS · CCH · MA (Psychology)</p>
@@ -3074,7 +3374,7 @@
         <div class="about-badge"><span class="num">BHMS</span><span class="txt">CCH · MA (Psycho)</span></div>
       </div>
       <div class="about-content">
-        <span class="section-tag">About the Doctor</span>
+        <span class="section-tag shimmer-text">About the Doctor</span>
         <h2 class="section-title">Dr. Gunja Gupta<br />BHMS, CCH, MA (Psychology)</h2>
         <p class="section-sub">A compassionate homeopathic physician who believes in treating the whole person — mind,
           body, and spirit. Dr. Gunja combines classical homeopathy with professional counselling to address both
@@ -3108,13 +3408,13 @@
   <!-- SERVICES -->
   <section id="services" class="services">
     <div class="center reveal">
-      <span class="section-tag">What We Treat</span>
+      <span class="section-tag shimmer-text">What We Treat</span>
       <h2 class="section-title">Our Homeopathic Services</h2>
       <p class="section-sub">Comprehensive, natural treatment for a wide range of conditions — with personalised care
         and counselling support.</p>
     </div>
     <div class="services-grid reveal">
-      <div class="service-card" id="service-womens-health">
+      <div class="service-card border-beam-card" id="service-womens-health">
         <img loading="lazy" src="images/womens_health.png" alt="Women's Health" class="service-img" />
         <div class="service-content">
           <h3>Women's Health</h3>
@@ -3122,7 +3422,7 @@
             remedies tailored to every woman's unique needs.</p>
         </div>
       </div>
-      <div class="service-card" id="service-skin">
+      <div class="service-card border-beam-card" id="service-skin">
         <img loading="lazy" src="images/skin_care.png" alt="Skin Care" class="service-img" />
         <div class="service-content">
           <h3>Skin Problems</h3>
@@ -3130,7 +3430,7 @@
             within for lasting, clear skin.</p>
         </div>
       </div>
-      <div class="service-card" id="service-hair">
+      <div class="service-card border-beam-card" id="service-hair">
         <img loading="lazy" src="images/hair_fall.png" alt="Hair Care" class="service-img" />
         <div class="service-content">
           <h3>Hair Fall Treatment</h3>
@@ -3138,7 +3438,7 @@
             growth without side effects.</p>
         </div>
       </div>
-      <div class="service-card" id="service-digestive">
+      <div class="service-card border-beam-card" id="service-digestive">
         <img loading="lazy" src="images/digestive.png?v=2" alt="Digestive Health" class="service-img" />
         <div class="service-content">
           <h3>Digestive System</h3>
@@ -3146,7 +3446,7 @@
             problems for lasting gut health.</p>
         </div>
       </div>
-      <div class="service-card" id="service-children">
+      <div class="service-card border-beam-card" id="service-children">
         <img loading="lazy" src="images/children.png" alt="Children's Health" class="service-img" />
         <div class="service-content">
           <h3>Children's Cases</h3>
@@ -3160,32 +3460,34 @@
 
   <!-- WHY US -->
   <section class="why" id="why">
+    <!-- INSPIRA-UI: Meteors -->
+    <div class="meteor-container" id="meteorContainer"></div>
     <div class="center reveal">
-      <span class="section-tag">Why Choose Us</span>
+      <span class="section-tag shimmer-text">Why Choose Us</span>
       <h2 class="section-title"> Dr. Gunja Gupta Difference</h2>
       <p class="section-sub">A unique approach that blends homeopathy with psychological expertise for complete healing.
       </p>
     </div>
     <div class="why-grid reveal">
-      <div class="why-card">
+      <div class="why-card reveal-left">
         <div class="why-icon"><i class="fas fa-leaf"></i></div>
         <h3>100% Natural</h3>
         <p>Safe, side-effect-free homeopathic medicines that work gently yet effectively to restore your body's natural
           balance.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card reveal-right">
         <div class="why-icon"><i class="fas fa-comments"></i></div>
         <h3>Medicines + Counselling</h3>
         <p>Unique combination of homeopathic treatment with professional counselling for behavioural and emotional
           cases.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card reveal-left">
         <div class="why-icon"><i class="fas fa-clock"></i></div>
         <h3>30–40 Min Sessions</h3>
         <p>Each appointment is a detailed 30–40 minute consultation — no rushed visits, thorough understanding of your
           condition.</p>
       </div>
-      <div class="why-card">
+      <div class="why-card reveal-right">
         <div class="why-icon"><i class="fas fa-heart"></i></div>
         <h3>Root Cause Treatment</h3>
         <p>We don't just suppress symptoms — we identify and treat the underlying cause for lasting, permanent relief.
@@ -3225,28 +3527,28 @@
         </div>
       </div>
       <div class="safe-hands-visual">
-        <div class="trust-card">
+        <div class="trust-card reveal-bounce">
           <div class="trust-icon"><i class="fas fa-user-md"></i></div>
           <div>
             <h4>Expert Homeopath</h4>
             <p>BHMS, CCH certified with Masters in Psychology for holistic patient care.</p>
           </div>
         </div>
-        <div class="trust-card">
+        <div class="trust-card reveal-bounce">
           <div class="trust-icon"><i class="fas fa-shield-alt"></i></div>
           <div>
             <h4>100% Safe & Natural</h4>
             <p>Zero side effects — gentle homeopathic medicines suitable for all ages.</p>
           </div>
         </div>
-        <div class="trust-card">
+        <div class="trust-card reveal-bounce">
           <div class="trust-icon"><i class="fas fa-hand-holding-heart"></i></div>
           <div>
             <h4>Compassionate Counselling</h4>
             <p>Every patient receives dedicated time, empathy, and professional counselling support.</p>
           </div>
         </div>
-        <div class="trust-card">
+        <div class="trust-card reveal-bounce">
           <div class="trust-icon"><i class="fas fa-heartbeat"></i></div>
           <div>
             <h4>Root Cause Healing</h4>
@@ -3260,7 +3562,7 @@
   <!-- TESTIMONIALS -->
   <section class="testimonials" id="testimonials">
     <div class="center reveal">
-      <span class="section-tag">Patient Success</span>
+      <span class="section-tag shimmer-text">Patient Success</span>
       <h2 class="section-title">Real Results. Real Stories.</h2>
       <p class="section-sub">Experience the power of natural healing through the words and results of our patients.</p>
     </div>
@@ -3586,7 +3888,7 @@
   <!-- APPOINTMENT CTA -->
   <section id="appointment" class="appointment-cta">
     <div class="center reveal">
-      <span class="section-tag">Get Started</span>
+      <span class="section-tag shimmer-text">Get Started</span>
       <h2 class="section-title">Book Your Appointment</h2>
       <p class="section-sub">Click below to fill out our appointment form. Each consultation is a detailed 30–40 minute
         session.</p>
@@ -3622,7 +3924,7 @@
   <section class="faq" id="faq">
     <div class="faq-container reveal">
       <div class="faq-header center">
-        <span class="section-tag">Common Questions</span>
+        <span class="section-tag shimmer-text">Common Questions</span>
         <h2 class="section-title">Frequently Asked Questions</h2>
         <p class="section-sub">Find answers to the most common questions about homeopathic treatment and our clinic.</p>
       </div>
@@ -3699,7 +4001,7 @@
   <!-- CONTACT -->
   <section id="contact" style="background:var(--off-white)">
     <div class="center reveal">
-      <span class="section-tag">Find Us</span>
+      <span class="section-tag shimmer-text">Find Us</span>
       <h2 class="section-title">Visit Our Clinic</h2>
     </div>
     <div class="contact-grid reveal">
@@ -3753,7 +4055,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo">
-          <div class="logo-icon"><i class="fas fa-leaf"></i></div>
+          <div class="logo-icon"><img src="images/clinic_icon.png" alt="Dr. Gunja Gupta Logo" class="logo-img" /></div>
           <div class="logo-text">Dr. Gunja Gupta<span>Homeopathy & Wellness</span></div>
         </div>
         <p>Natural healing through homeopathy and professional counselling. We treat the root cause — not just symptoms
@@ -4248,6 +4550,237 @@
           .catch(err => console.log('SW registration failed:', err));
       });
     }
+  </script>
+
+  <!-- LENIS SMOOTH SCROLL CDN -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <script>
+    // ══════ LENIS: SMOOTH SCROLLING ══════
+    const lenis = new Lenis({
+      lerp: 0.06,
+      smoothWheel: true,
+      autoResize: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Smooth scroll for all anchor links via Lenis
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (href === '#' || href === 'javascript:void(0)') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -80 });
+        }
+      });
+    });
+
+    // ══════ INSPIRA-UI: SPARKLE PARTICLES ON HERO TEXT ══════
+    (function initSparkles() {
+      const wrap = document.getElementById('heroSparkle');
+      if (!wrap) return;
+
+      function createSparkle() {
+        const sparkle = document.createElement('span');
+        sparkle.classList.add('sparkle-particle');
+        const size = Math.random() * 16 + 8;
+        const dur = Math.random() * 1 + 1;
+        sparkle.style.cssText = `
+          top: ${Math.random() * 100}%;
+          left: ${Math.random() * 100}%;
+          --dur: ${dur}s;
+        `;
+        const colors = ['#2dd4bf', '#14b8a6', '#0d9488', '#fbbf24', '#f0fdfa'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        sparkle.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}">
+          <path d="M12 0L14.59 8.41L23 12L14.59 15.59L12 24L9.41 15.59L1 12L9.41 8.41Z"/>
+        </svg>`;
+        wrap.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), dur * 1000);
+      }
+
+      setInterval(createSparkle, 400);
+      // Initial burst
+      for (let i = 0; i < 4; i++) setTimeout(createSparkle, i * 100);
+    })();
+
+    // ══════ INSPIRA-UI: FLOATING PARTICLES IN HERO ══════
+    (function initHeroParticles() {
+      const container = document.getElementById('heroParticles');
+      if (!container) return;
+      const particleData = [
+        { x: '10%', y: '20%', size: 5, opacity: 0.3, dur: 7, delay: 0 },
+        { x: '25%', y: '60%', size: 3, opacity: 0.2, dur: 9, delay: 1 },
+        { x: '45%', y: '30%', size: 6, opacity: 0.15, dur: 11, delay: 2 },
+        { x: '65%', y: '70%', size: 4, opacity: 0.25, dur: 8, delay: 0.5 },
+        { x: '80%', y: '15%', size: 5, opacity: 0.2, dur: 10, delay: 3 },
+        { x: '90%', y: '50%', size: 3, opacity: 0.3, dur: 6, delay: 1.5 },
+        { x: '15%', y: '80%', size: 7, opacity: 0.12, dur: 12, delay: 4 },
+        { x: '55%', y: '45%', size: 4, opacity: 0.18, dur: 9, delay: 2.5 },
+        { x: '35%', y: '10%', size: 3, opacity: 0.22, dur: 7, delay: 0.8 },
+        { x: '70%', y: '85%', size: 5, opacity: 0.15, dur: 10, delay: 3.5 },
+        { x: '5%', y: '45%', size: 4, opacity: 0.2, dur: 8, delay: 1.2 },
+        { x: '50%', y: '90%', size: 6, opacity: 0.1, dur: 13, delay: 5 },
+      ];
+      particleData.forEach(p => {
+        const el = document.createElement('div');
+        el.classList.add('hero-particle');
+        el.style.cssText = `left:${p.x};top:${p.y};--p-size:${p.size}px;--p-opacity:${p.opacity};--p-dur:${p.dur}s;--p-delay:${p.delay}s;`;
+        container.appendChild(el);
+      });
+    })();
+
+    // ══════ INSPIRA-UI: HERO SUBTITLE BLUR REVEAL ══════
+    (function initBlurReveal() {
+      const el = document.getElementById('heroSubtitle');
+      if (!el) return;
+      const text = el.textContent.trim();
+      const words = text.split(/\s+/);
+      el.innerHTML = '';
+      words.forEach((word, i) => {
+        const span = document.createElement('span');
+        span.classList.add('blur-reveal-word');
+        span.textContent = word;
+        span.style.animationDelay = `${0.3 + i * 0.04}s`;
+        el.appendChild(span);
+        // Add a space
+        el.appendChild(document.createTextNode(' '));
+      });
+    })();
+
+    // ══════ INSPIRA-UI: METEOR EFFECT IN WHY SECTION ══════
+    (function initMeteors() {
+      const container = document.getElementById('meteorContainer');
+      if (!container) return;
+      const meteorData = [
+        { left: '15%', height: 120, dur: 4, delay: 0 },
+        { left: '35%', height: 80, dur: 3.5, delay: 1.2 },
+        { left: '55%', height: 100, dur: 5, delay: 2.5 },
+        { left: '75%', height: 90, dur: 3.8, delay: 0.8 },
+        { left: '90%', height: 110, dur: 4.5, delay: 3.5 },
+        { left: '25%', height: 70, dur: 3.2, delay: 4 },
+        { left: '60%', height: 130, dur: 5.5, delay: 1.8 },
+        { left: '45%', height: 85, dur: 3.6, delay: 5.2 },
+        { left: '10%', height: 95, dur: 4.2, delay: 2 },
+        { left: '80%', height: 75, dur: 3.3, delay: 3 },
+      ];
+      meteorData.forEach(m => {
+        const el = document.createElement('div');
+        el.classList.add('meteor');
+        el.style.cssText = `left:${m.left};top:-${m.height}px;height:${m.height}px;--m-dur:${m.dur}s;--m-delay:${m.delay}s;`;
+        container.appendChild(el);
+      });
+    })();
+
+    // ══════ ANIMATE-UI: MAGNETIC TILT ON HERO CARD ══════
+    (function initMagneticTilt() {
+      const card = document.getElementById('heroCard');
+      if (!card) return;
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
+      });
+    })();
+
+    // ══════ ANIMATE-UI: MAGNETIC BUTTON HOVER ══════
+    document.querySelectorAll('.btn-primary, .nav-cta, .book-google-btn').forEach(btn => {
+      btn.classList.add('magnetic-btn');
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) translateY(-3px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+
+    // ══════ ANIMATE-UI: RIPPLE CLICK EFFECT ══════
+    document.querySelectorAll('.btn-primary, .btn-outline, .book-google-btn, .nav-cta').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const rect = this.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple-effect');
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+        ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // ══════ INSPIRA-UI: HERO PARALLAX ON SCROLL ══════
+    lenis.on('scroll', ({ scroll }) => {
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
+      const heroH = hero.offsetHeight;
+      if (scroll < heroH) {
+        const ratio = scroll / heroH;
+        // Move pseudo-elements via CSS custom props (we use translate on existing elements)
+        const particles = document.getElementById('heroParticles');
+        if (particles) {
+          particles.style.transform = `translateY(${scroll * 0.15}px)`;
+        }
+      }
+    });
+
+    // ══════ ANIMATE-UI: STAGGERED REVEALS VIA INTERSECTION OBSERVER ══════
+    const staggerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Find all revealable children
+          const items = entry.target.querySelectorAll('.reveal-left, .reveal-right, .reveal-bounce, .reveal-stagger');
+          items.forEach((item, i) => {
+            setTimeout(() => {
+              item.classList.add('visible');
+            }, i * 150);
+          });
+          // Also reveal the container if it has reveal class
+          entry.target.classList.add('visible');
+          staggerObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    // Observe containers that have staggerable children
+    document.querySelectorAll('.why-grid, .safe-hands-visual').forEach(el => {
+      staggerObserver.observe(el);
+    });
+
+    // Also observe individual reveal elements outside containers
+    const individualObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          individualObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal-left, .reveal-right, .reveal-bounce, .reveal-stagger').forEach(el => {
+      // Only observe if not inside an already-observed container
+      if (!el.closest('.why-grid') && !el.closest('.safe-hands-visual')) {
+        individualObserver.observe(el);
+      }
+    });
   </script>
 </body>
 
