@@ -161,12 +161,14 @@
       height: 100%;
       object-fit: contain;
       mix-blend-mode: multiply;
-      filter: drop-shadow(0 4px 10px rgba(13, 148, 136, 0.2));
+      /* Increase brightness to make off-white background pure white so multiply hides it completely */
+      filter: brightness(1.1) contrast(1.2) drop-shadow(0 4px 10px rgba(13, 148, 136, 0.2));
     }
 
     [data-theme="dark"] .logo-img {
       mix-blend-mode: screen;
-      filter: invert(1) hue-rotate(180deg) drop-shadow(0 4px 10px rgba(13, 148, 136, 0.2));
+      /* Increase brightness BEFORE invert so the background becomes pure black, which screen hides completely */
+      filter: brightness(1.1) contrast(1.2) invert(1) hue-rotate(180deg) drop-shadow(0 4px 10px rgba(13, 148, 136, 0.2));
     }
 
     .logo-text {
