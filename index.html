@@ -109,6 +109,12 @@
       color: var(--text);
       background: var(--off-white);
       overflow-x: hidden;
+      animation: pageLoad 0.6s ease-out both;
+    }
+
+    @keyframes pageLoad {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* NAV */
@@ -227,6 +233,14 @@
     .nav-links a:hover::after,
     .nav-links a.active::after {
       width: 100%;
+    }
+
+    .nav-links a.active {
+      color: var(--teal);
+      background: rgba(13, 148, 136, 0.08);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin: -6px -14px;
     }
 
     .nav-cta {
@@ -893,6 +907,24 @@
       max-width: 1200px;
       margin: 4rem auto 0;
     }
+
+    .services-grid .service-card {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+    .services-grid.visible .service-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .services-grid.visible .service-card:nth-child(1) { transition-delay: 0s; }
+    .services-grid.visible .service-card:nth-child(2) { transition-delay: 0.08s; }
+    .services-grid.visible .service-card:nth-child(3) { transition-delay: 0.16s; }
+    .services-grid.visible .service-card:nth-child(4) { transition-delay: 0.24s; }
+    .services-grid.visible .service-card:nth-child(5) { transition-delay: 0.32s; }
+    .services-grid.visible .service-card:nth-child(6) { transition-delay: 0.40s; }
+    .services-grid.visible .service-card:nth-child(7) { transition-delay: 0.48s; }
+    .services-grid.visible .service-card:nth-child(8) { transition-delay: 0.56s; }
 
     .service-card {
       background: #fff;
@@ -2419,13 +2451,33 @@
       display: flex;
       align-items: center;
       gap: 1.5rem;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(135deg, transparent, var(--teal-light), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
 
     .trust-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(13, 148, 136, 0.15);
       background: #fff;
+    }
+
+    .trust-card:hover::before {
+      opacity: 1;
     }
 
     .trust-icon {
@@ -2437,6 +2489,11 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      transition: transform 0.4s ease;
+    }
+
+    .trust-card:hover .trust-icon {
+      transform: rotate(8deg) scale(1.1);
     }
 
     .trust-icon i {
@@ -2492,6 +2549,28 @@
       background: var(--off-white);
       overflow: hidden;
       transition: all 0.3s ease;
+      counter-increment: faq-counter;
+    }
+
+    .faq-list {
+      counter-reset: faq-counter;
+    }
+
+    .faq-question::before {
+      content: counter(faq-counter, decimal-leading-zero);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--teal-light);
+      opacity: 0.5;
+      min-width: 36px;
+      flex-shrink: 0;
+      transition: opacity 0.3s, color 0.3s;
+    }
+
+    .faq-item.active .faq-question::before {
+      opacity: 1;
+      color: var(--teal);
     }
 
     .faq-item.active {
@@ -2972,6 +3051,145 @@
       }
     }
 
+    /* WhatsApp Float */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 105px;
+      left: 40px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      text-decoration: none;
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 999;
+      animation: pulse-whatsapp 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      animation-play-state: paused;
+      background: #128C7E;
+      transform: translateY(-5px) scale(1.08);
+      box-shadow: 0 15px 30px rgba(37, 211, 102, 0.5);
+      color: #fff;
+    }
+
+    .whatsapp-float .wa-tooltip {
+      position: absolute;
+      left: 72px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #fff;
+      color: var(--text);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      white-space: nowrap;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .whatsapp-float .wa-tooltip::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-right-color: #fff;
+    }
+
+    .whatsapp-float:hover .wa-tooltip {
+      opacity: 1;
+    }
+
+    @keyframes pulse-whatsapp {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    /* Section Dividers */
+    .section-divider {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+    }
+    .section-divider svg {
+      display: block;
+      width: 100%;
+      height: 40px;
+    }
+
+    /* Contact Items Hover */
+    .contact-item {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 12px;
+      padding: 8px;
+      margin: -8px;
+    }
+    .contact-item:hover {
+      transform: translateX(8px);
+      background: var(--teal-bg);
+    }
+
+    /* Map Glow */
+    .map-frame {
+      transition: box-shadow 0.4s ease;
+    }
+    .map-frame:hover {
+      box-shadow: 0 0 30px rgba(13, 148, 136, 0.2), var(--shadow-lg);
+    }
+
+    /* Social link hover glow */
+    .social-link {
+      transition: all 0.3s ease !important;
+    }
+    .social-link:hover {
+      transform: translateY(-4px) scale(1.15) !important;
+      box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3) !important;
+    }
+
+    /* Focus-visible for Accessibility */
+    *:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+    }
+
+    /* Reduced Motion Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* Performance Hints */
+    .service-card, .why-card, .trust-card, .hero-card, .floating-badge {
+      will-change: transform;
+    }
+
     @media(max-width: 600px) {
       .call-float {
         bottom: 75px;
@@ -2979,6 +3197,16 @@
         width: 50px;
         height: 50px;
         font-size: 22px;
+      }
+      .whatsapp-float {
+        bottom: 75px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+      .whatsapp-float .wa-tooltip {
+        display: none;
       }
     }
 
@@ -3384,6 +3612,13 @@
     </div>
   </section>
 
+  <!-- DIVIDER: Hero → Stats -->
+  <div class="section-divider" style="background: var(--white);">
+    <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q360,40 720,20 T1440,20 L1440,40 L0,40 Z" fill="var(--teal-dark)"/>
+    </svg>
+  </div>
+
   <!-- STATS BAR -->
   <div class="stats-bar">
     <div class="stats-grid">
@@ -3520,6 +3755,13 @@
 
     </div>
   </section>
+
+  <!-- DIVIDER: Services → Why -->
+  <div class="section-divider" style="background: var(--off-white);">
+    <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 Q360,0 720,20 T1440,20 L1440,40 L0,40 Z" fill="var(--teal-dark)"/>
+    </svg>
+  </div>
 
   <!-- WHY US -->
   <section class="why" id="why">
@@ -4176,6 +4418,12 @@
   <!-- CALL CTA -->
   <a href="tel:+917601839607" class="call-float" aria-label="Call Clinic">
     <i class="fas fa-phone-alt"></i>
+  </a>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/917601839607?text=Hello%20Dr.%20Gunja%20Gupta%2C%20I%20would%20like%20to%20book%20an%20appointment." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="wa-tooltip">Chat with us on WhatsApp</span>
   </a>
 
   <!-- BACK TO TOP -->
