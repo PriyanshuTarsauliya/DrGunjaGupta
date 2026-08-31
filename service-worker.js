@@ -1,10 +1,20 @@
-const CACHE_NAME = 'drgunja-v11';
+const CACHE_NAME = 'drgunja-v12';
 const OFFLINE_URLS = [
   './',
   './index.html',
   './manifest.json',
   './icons/icon-192.png',
-  './icons/icon-512.png'
+  './icons/icon-512.png',
+  './images/clinic_icon.png',
+  './images/Dr Gunja Gupta.jpeg',
+  './images/womens_health.png',
+  './images/female_infertility.png',
+  './images/children.png',
+  './images/mental.png',
+  './images/respiratory.png',
+  './images/skin_care.png',
+  './images/hair_fall.png',
+  './images/digestive.png'
 ];
 
 // Install — cache essential files
