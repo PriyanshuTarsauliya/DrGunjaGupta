@@ -697,16 +697,22 @@
     }
 
     .section-tag {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       background: var(--teal-pale);
-      color: var(--teal-dark);
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 2px;
+      color: var(--teal-dark) !important;
+      -webkit-text-fill-color: var(--teal-dark) !important;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      padding: 8px 18px;
-      border-radius: 30px;
+      padding: 7px 20px;
+      border-radius: 50px;
+      border: 1px solid rgba(13, 148, 136, 0.2);
       margin-bottom: 16px;
+      box-shadow: 0 2px 10px rgba(13, 148, 136, 0.08);
+      transition: all 0.3s ease;
     }
 
     .section-title {
@@ -2596,6 +2602,13 @@
       background: #2dd4bf11;
     }
 
+    [data-theme="dark"] .section-tag:not(.why .section-tag) {
+      background: rgba(45, 212, 191, 0.12);
+      border-color: rgba(45, 212, 191, 0.25);
+      color: var(--teal-light) !important;
+      -webkit-text-fill-color: var(--teal-light) !important;
+    }
+
     [data-theme="dark"] .about-img-wrap::before {
       background: var(--teal-dark);
     }
@@ -3401,7 +3414,7 @@
         <div class="about-badge"><span class="num">BHMS</span><span class="txt">CCH · MA (Psycho)</span></div>
       </div>
       <div class="about-content">
-        <span class="section-tag shimmer-text">About the Doctor</span>
+        <span class="section-tag"><i class="fas fa-user-md" style="color: var(--teal);"></i> About the Doctor</span>
         <h2 class="section-title">Dr. Gunja Gupta<br />BHMS, CCH, MA (Psychology)</h2>
         <p class="section-sub">A compassionate homeopathic physician who believes in treating the whole person — mind,
           body, and spirit. Dr. Gunja combines classical homeopathy with professional counselling to address both
@@ -3443,10 +3456,9 @@
   <!-- SERVICES -->
   <section id="services" class="services">
     <div class="center reveal">
-      <span class="section-tag shimmer-text">What We Treat</span>
+      <span class="section-tag"><i class="fas fa-hand-holding-medical" style="color: var(--teal);"></i> What We Treat</span>
       <h2 class="section-title">Our Homeopathic Services</h2>
-      <p class="section-sub">Comprehensive, natural treatment for a wide range of conditions — with personalised care
-        and counselling support.</p>
+      <p class="section-sub">Comprehensive, natural healing tailored to your unique health needs — combining classical homeopathic remedies with compassionate counselling.</p>
     </div>
     <div class="services-grid reveal">
       <div class="service-card border-beam-card" id="service-womens-health">
@@ -3608,7 +3620,7 @@
   <!-- TESTIMONIALS -->
   <section class="testimonials" id="testimonials">
     <div class="center reveal">
-      <span class="section-tag shimmer-text">Patient Success</span>
+      <span class="section-tag"><i class="fas fa-star" style="color: var(--gold);"></i> Patient Success</span>
       <h2 class="section-title">Real Results. Real Stories.</h2>
       <p class="section-sub">Experience the power of natural healing through the words and results of our patients.</p>
     </div>
@@ -3934,7 +3946,7 @@
   <!-- APPOINTMENT CTA -->
   <section id="appointment" class="appointment-cta">
     <div class="center reveal">
-      <span class="section-tag shimmer-text">Get Started</span>
+      <span class="section-tag"><i class="fas fa-calendar-check" style="color: var(--teal);"></i> Get Started</span>
       <h2 class="section-title">Book Your Appointment</h2>
       <p class="section-sub">Click below to fill out our appointment form. Each consultation is a detailed 30–40 minute
         session.</p>
@@ -3970,7 +3982,7 @@
   <section class="faq" id="faq">
     <div class="faq-container reveal">
       <div class="faq-header center">
-        <span class="section-tag shimmer-text">Common Questions</span>
+        <span class="section-tag"><i class="fas fa-question-circle" style="color: var(--teal);"></i> Common Questions</span>
         <h2 class="section-title">Frequently Asked Questions</h2>
         <p class="section-sub">Find answers to the most common questions about homeopathic treatment and our clinic.</p>
       </div>
@@ -4047,7 +4059,7 @@
   <!-- CONTACT -->
   <section id="contact" style="background:var(--off-white)">
     <div class="center reveal">
-      <span class="section-tag shimmer-text">Find Us</span>
+      <span class="section-tag"><i class="fas fa-map-marker-alt" style="color: var(--teal);"></i> Find Us</span>
       <h2 class="section-title">Visit Our Clinic</h2>
     </div>
     <div class="contact-grid reveal">
@@ -4458,7 +4470,7 @@
       ['.stats-bar .stat-counter:nth-child(3) .lbl','t','मिनट विस्तृत परामर्श'],
       ['.stats-bar .stat-counter:nth-child(4) .lbl','t','प्राकृतिक और सुरक्षित उपचार'],
       // About
-      ['#about .section-tag','t','डॉक्टर के बारे में'],
+      ['#about .section-tag','h','<i class="fas fa-user-md" style="color: var(--teal);"></i> डॉक्टर के बारे में'],
       ['#about .section-title','h','डॉ. गुंजा गुप्ता<br/>BHMS, CCH, MA (मनोविज्ञान)'],
       ['#about .section-sub','t','एक संवेदनशील होम्योपैथिक चिकित्सक जो पूरे व्यक्ति — मन, शरीर और आत्मा — के उपचार में विश्वास करती हैं। डॉ. गुंजा क्लासिकल होम्योपैथी को प्रोफेशनल काउंसलिंग के साथ जोड़कर शारीरिक और भावनात्मक दोनों समस्याओं का समाधान करती हैं।'],
       ['#about .qual-list li:nth-child(1)','h','<i class="fas fa-graduation-cap"></i> <strong>BHMS</strong> — बैचलर ऑफ होम्योपैथिक मेडिसिन एंड सर्जरी'],
@@ -4469,7 +4481,7 @@
       ['#key-strengths-box h4','h','<i class="fas fa-star" style="color: var(--gold);"></i> मुख्य विशेषताएँ'],
       ['#key-strengths-box p','t','मरीजों द्वारा डॉ. गुंजा के विस्तृत परामर्श, व्यक्तिगत उपचार योजनाओं और देखभाल के प्रति उनके करुणामय दृष्टिकोण की सराहना की जाती है। स्वास्थ्य संबंधी चिंताओं के अंतर्निहित कारणों को समझने और केवल लक्षणों के इलाज के बजाय समग्र, रोगी-केंद्रित देखभाल प्रदान करने की उनकी प्रतिबद्धता को अत्यधिक सराहा जाता है।'],
       // Services
-      ['#services > .center .section-tag','t','हम क्या इलाज करते हैं'],
+      ['#services > .center .section-tag','h','<i class="fas fa-hand-holding-medical" style="color: var(--teal);"></i> हम क्या इलाज करते हैं'],
       ['#services > .center .section-title','t','हमारी होम्योपैथिक सेवाएँ'],
       ['#services > .center .section-sub','t','विभिन्न स्वास्थ्य समस्याओं के लिए व्यापक, प्राकृतिक उपचार — व्यक्तिगत देखभाल और काउंसलिंग सहायता के साथ।'],
       ['#service-womens-health h3','t','महिला स्वास्थ्य'],
@@ -4515,13 +4527,13 @@
       ['.safe-hands-visual .trust-card:nth-child(4) h4','t','मूल कारण उपचार'],
       ['.safe-hands-visual .trust-card:nth-child(4) p','t','हम लक्षण नहीं दबाते — स्थायी राहत के लिए अंतर्निहित कारण का इलाज करते हैं।'],
       // Testimonials header
-      ['#testimonials > .center .section-tag','t','रोगी सफलता'],
+      ['#testimonials > .center .section-tag','h','<i class="fas fa-star" style="color: var(--gold);"></i> रोगी सफलता'],
       ['#testimonials > .center .section-title','t','वास्तविक परिणाम। वास्तविक कहानियाँ।'],
       ['#testimonials > .center .section-sub','t','हमारे रोगियों के शब्दों और परिणामों से प्राकृतिक उपचार की शक्ति का अनुभव करें।'],
       ['.pf-stat:nth-child(1) .pf-stat-label','t','औसत रेटिंग'],
       ['.pf-stat:nth-child(2) .pf-stat-label','t','प्लेटफॉर्म पर विश्वास'],
       // Appointment CTA
-      ['#appointment .section-tag','t','शुरू करें'],
+      ['#appointment .section-tag','h','<i class="fas fa-calendar-check" style="color: var(--teal);"></i> शुरू करें'],
       ['#appointment .section-title','t','अपना अपॉइंटमेंट बुक करें'],
       ['#appointment .section-sub','t','नीचे क्लिक करके अपॉइंटमेंट फॉर्म भरें। हर परामर्श 30–40 मिनट का विस्तृत सत्र है।'],
       ['.appt-cta-box h3','t','अपना परामर्श शेड्यूल करें'],
@@ -4530,7 +4542,7 @@
       ['.appt-feature:nth-child(2)','h','<i class="fas fa-leaf"></i> 100% प्राकृतिक उपचार'],
       ['.appt-feature:nth-child(3)','h','<i class="fas fa-comments"></i> काउंसलिंग शामिल'],
       // FAQ
-      ['#faq .section-tag','t','सामान्य प्रश्न'],
+      ['#faq .section-tag','h','<i class="fas fa-question-circle" style="color: var(--teal);"></i> सामान्य प्रश्न'],
       ['#faq .section-title','t','अक्सर पूछे जाने वाले प्रश्न'],
       ['#faq .section-sub','t','होम्योपैथिक उपचार और हमारी क्लिनिक के बारे में सबसे आम प्रश्नों के उत्तर खोजें।'],
       ['.faq-item:nth-child(1) .faq-question span','t','क्या होम्योपैथिक दवाएँ बच्चों और गर्भवती महिलाओं के लिए सुरक्षित हैं?'],
@@ -4542,7 +4554,7 @@
       ['.faq-item:nth-child(4) .faq-question span','t','आप काउंसलिंग से कौन-सी व्यवहार संबंधी समस्याओं का इलाज करते हैं?'],
       ['.faq-item:nth-child(4) .faq-answer p','t','मनोविज्ञान में मास्टर्स डिग्री के साथ, डॉ. गुंजा गुप्ता चिंता, पैनिक अटैक, अवसाद, तनाव प्रबंधन और बच्चों की व्यवहार संबंधी समस्याओं के लिए होम्योपैथिक दवाओं के साथ प्रोफेशनल काउंसलिंग को जोड़ती हैं।'],
       // Contact
-      ['#contact .section-tag','t','हमें खोजें'],
+      ['#contact .section-tag','h','<i class="fas fa-map-marker-alt" style="color: var(--teal);"></i> हमें खोजें'],
       ['#contact .section-title','t','क्लिनिक पर आएँ'],
       ['.contact-info h3','t','संपर्क करें'],
       // Footer
