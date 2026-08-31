@@ -1,4 +1,4 @@
-const CACHE_NAME = 'drgunja-v4';
+const CACHE_NAME = 'drgunja-v5';
 const OFFLINE_URLS = [
   './',
   './index.html',
