@@ -11,7 +11,7 @@
     content="Homeopathy, Dr. Gunja Gupta, Homeopathic Clinic Jabalpur, Vijay Nagar, wellness clinic, thyroid disorders, female infertility, respiratory disorders, asthma treatment, bronchitis, mental health, anxiety depression, women's health homeopathy, counseling Jabalpur, PCOS treatment homeopathy, hair fall homeopathy, safe treatments" />
   
   <!-- Security Meta Tags -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; frame-src https://maps.google.com https://docs.google.com; connect-src 'self';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; frame-src https://maps.google.com https://www.google.com https://docs.google.com https://www.openstreetmap.org; connect-src 'self';" />
   <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
@@ -2778,6 +2778,9 @@
     [data-theme="dark"] .map-frame {
       border-color: var(--border);
     }
+    [data-theme="dark"] .map-frame iframe {
+      filter: invert(90%) hue-rotate(180deg) contrast(95%);
+    }
 
     [data-theme="dark"] nav.scrolled {
       background: rgba(15, 23, 42, 0.95);
@@ -3704,7 +3707,7 @@
         </div>
       </div>
       <div class="service-card border-beam-card" id="service-infertility">
-        <img loading="eager" decoding="async" src="images/female_infertility.png" alt="Infertility in Females" class="service-img" />
+        <img loading="eager" decoding="async" src="images/female_infertility.png?v=2" alt="Infertility in Females" class="service-img" />
         <div class="service-content">
           <h3>Infertility in Females</h3>
           <p>Expert homeopathic care for female infertility, addressing ovulation difficulties, hormonal imbalances, blocked fallopian tubes, and reproductive wellness naturally.</p>
@@ -4341,11 +4344,16 @@
                 Services</a></span></div>
         </div>
       </div>
-      <div class="map-frame">
+      <div class="map-frame" style="position: relative;">
         <iframe
-          src="https://maps.google.com/maps?q=Dr.+Gunja+Gupta+Homeopathy+Clinic+Jabalpur&t=&z=13&ie=UTF8&iwloc=&output=embed"
-          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=79.8950%2C23.1700%2C79.9400%2C23.2000&amp;layer=mapnik&amp;marker=23.1850%2C79.9190"
+          loading="lazy"
           title="Clinic Location - Vijay Nagar, Jabalpur"></iframe>
+        <div style="position: absolute; bottom: 16px; right: 16px; z-index: 10;">
+          <a href="https://maps.google.com/?q=23.1850,79.9190" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding: 10px 20px; font-size: 0.85rem; border-radius: 30px; box-shadow: var(--shadow-md); display: inline-flex; align-items: center; gap: 8px;">
+            <i class="fas fa-location-arrow"></i> Open in Google Maps
+          </a>
+        </div>
       </div>
     </div>
   </section>
