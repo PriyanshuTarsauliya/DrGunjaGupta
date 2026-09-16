@@ -9,13 +9,14 @@
     content="Dr. Gunja Gupta's Homeopathy & Wellness Clinic in Vijay Nagar, Jabalpur. Expert homeopathic treatment for women's health, thyroid disorders, female infertility, respiratory disorders, skin, hair, children's issues, anxiety, depression & psychiatric counselling. BHMS, CCH, MA(Psychology)." />
   <meta name="keywords"
     content="Homeopathy, Dr. Gunja Gupta, Homeopathic Clinic Jabalpur, Vijay Nagar, wellness clinic, thyroid disorders, female infertility, respiratory disorders, asthma treatment, bronchitis, mental health, anxiety depression, women's health homeopathy, counseling Jabalpur, PCOS treatment homeopathy, hair fall homeopathy, safe treatments" />
-  
+
   <!-- Security Meta Tags -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; frame-src https://maps.google.com https://www.google.com https://docs.google.com https://www.openstreetmap.org; connect-src 'self';" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; frame-src https://maps.google.com https://www.google.com https://docs.google.com https://www.openstreetmap.org; connect-src 'self';" />
   <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  
+
   <link rel="icon" href="images/clinic_icon.png" type="image/png" />
   <link rel="shortcut icon" href="images/clinic_icon.png" type="image/png" />
   <link rel="apple-touch-icon" href="images/clinic_icon.png" />
@@ -94,12 +95,15 @@
     }
 
     /* Lenis smooth scroll CSS */
-    html.lenis, html.lenis body {
+    html.lenis,
+    html.lenis body {
       height: auto;
     }
+
     .lenis:not(.lenis-autoToggle).lenis-stopped {
       overflow: clip;
     }
+
     .lenis.lenis-smooth iframe {
       pointer-events: none;
     }
@@ -113,8 +117,15 @@
     }
 
     @keyframes pageLoad {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* NAV */
@@ -187,6 +198,7 @@
       font-weight: 700;
       color: var(--text);
       line-height: 1.2;
+      white-space: nowrap;
     }
 
     .logo-text span {
@@ -197,6 +209,7 @@
       color: var(--teal);
       letter-spacing: 2px;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -263,43 +276,189 @@
     .hamburger {
       display: none;
       flex-direction: column;
-      gap: 6px;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       cursor: pointer;
-      padding: 5px;
+      padding: 0;
+      background: rgba(13, 148, 136, 0.08);
+      border: 1px solid rgba(13, 148, 136, 0.15);
+      transition: all 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .hamburger:hover {
+      background: rgba(13, 148, 136, 0.16);
+      border-color: var(--teal);
     }
 
     .hamburger span {
-      width: 28px;
+      display: block;
+      width: 20px;
       height: 2px;
       background: var(--text);
       border-radius: 2px;
-      transition: 0.3s;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform-origin: center;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
 
     .mobile-menu {
-      display: none;
       position: fixed;
-      top: 80px;
+      top: 66px;
       left: 0;
       width: 100%;
-      background: #fff;
-      padding: 1.5rem 5%;
+      max-height: calc(100vh - 66px);
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 1.25rem 1.25rem 2.25rem;
       border-bottom: 1px solid var(--border);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
       z-index: 999;
-      box-shadow: var(--shadow-sm);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-12px);
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.3s;
     }
 
-    .mobile-menu a {
-      display: block;
-      padding: 14px 0;
+    .mobile-menu.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mobile-menu a.mobile-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
       color: var(--text);
       text-decoration: none;
-      font-weight: 500;
-      border-bottom: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 0.96rem;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
     }
 
-    .mobile-menu a:last-child {
-      border: none;
+    .mobile-menu a.mobile-nav-link i {
+      width: 20px;
+      text-align: center;
+      color: var(--teal);
+      font-size: 1.05rem;
+    }
+
+    .mobile-menu a.mobile-nav-link:hover,
+    .mobile-menu a.mobile-nav-link:active {
+      background: var(--teal-pale);
+      color: var(--teal-dark);
+      border-color: rgba(13, 148, 136, 0.15);
+    }
+
+    .mobile-menu-cta-wrap {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mobile-menu-cta-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--teal);
+      margin-bottom: 2px;
+    }
+
+    .mobile-menu-book-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--teal-light), var(--teal));
+      color: #fff !important;
+      font-weight: 700;
+      padding: 12px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 0.92rem;
+      box-shadow: 0 4px 15px rgba(13, 148, 136, 0.25);
+    }
+
+    .mobile-menu-book-btn.in-clinic {
+      background: linear-gradient(135deg, var(--teal-dark), #09534d);
+    }
+
+    .mobile-feedback-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+
+    .mobile-menu-quick-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .mobile-menu-quick-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 11px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .mobile-menu-call {
+      background: rgba(13, 148, 136, 0.1);
+      color: var(--teal) !important;
+      border: 1px solid rgba(13, 148, 136, 0.25);
+    }
+
+    .mobile-menu-wa {
+      background: rgba(37, 211, 102, 0.12);
+      color: #15803d !important;
+      border: 1px solid rgba(37, 211, 102, 0.3);
     }
 
     /* NAV DROPDOWN */
@@ -913,18 +1072,43 @@
       transform: translateY(30px);
       transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     }
+
     .services-grid.visible .service-card {
       opacity: 1;
       transform: translateY(0);
     }
-    .services-grid.visible .service-card:nth-child(1) { transition-delay: 0s; }
-    .services-grid.visible .service-card:nth-child(2) { transition-delay: 0.08s; }
-    .services-grid.visible .service-card:nth-child(3) { transition-delay: 0.16s; }
-    .services-grid.visible .service-card:nth-child(4) { transition-delay: 0.24s; }
-    .services-grid.visible .service-card:nth-child(5) { transition-delay: 0.32s; }
-    .services-grid.visible .service-card:nth-child(6) { transition-delay: 0.40s; }
-    .services-grid.visible .service-card:nth-child(7) { transition-delay: 0.48s; }
-    .services-grid.visible .service-card:nth-child(8) { transition-delay: 0.56s; }
+
+    .services-grid.visible .service-card:nth-child(1) {
+      transition-delay: 0s;
+    }
+
+    .services-grid.visible .service-card:nth-child(2) {
+      transition-delay: 0.08s;
+    }
+
+    .services-grid.visible .service-card:nth-child(3) {
+      transition-delay: 0.16s;
+    }
+
+    .services-grid.visible .service-card:nth-child(4) {
+      transition-delay: 0.24s;
+    }
+
+    .services-grid.visible .service-card:nth-child(5) {
+      transition-delay: 0.32s;
+    }
+
+    .services-grid.visible .service-card:nth-child(6) {
+      transition-delay: 0.40s;
+    }
+
+    .services-grid.visible .service-card:nth-child(7) {
+      transition-delay: 0.48s;
+    }
+
+    .services-grid.visible .service-card:nth-child(8) {
+      transition-delay: 0.56s;
+    }
 
     .service-card {
       background: #fff;
@@ -1267,13 +1451,13 @@
       min-width: 280px;
       max-width: 320px;
       flex-shrink: 0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
       display: flex;
       flex-direction: column;
     }
 
     .pf-card:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       transform: translateY(-2px);
     }
 
@@ -1338,12 +1522,35 @@
       flex-shrink: 0;
     }
 
-    .pf-av-teal { background: #e0f2f1; color: #00796b; }
-    .pf-av-blue { background: #e8f0fe; color: #1967d2; }
-    .pf-av-amber { background: #fef7e0; color: #b06000; }
-    .pf-av-red { background: #fce8e6; color: #c5221f; }
-    .pf-av-green { background: #e6f4ea; color: #137333; }
-    .pf-av-brown { background: #efebe9; color: #5d4037; }
+    .pf-av-teal {
+      background: #e0f2f1;
+      color: #00796b;
+    }
+
+    .pf-av-blue {
+      background: #e8f0fe;
+      color: #1967d2;
+    }
+
+    .pf-av-amber {
+      background: #fef7e0;
+      color: #b06000;
+    }
+
+    .pf-av-red {
+      background: #fce8e6;
+      color: #c5221f;
+    }
+
+    .pf-av-green {
+      background: #e6f4ea;
+      color: #137333;
+    }
+
+    .pf-av-brown {
+      background: #efebe9;
+      color: #5d4037;
+    }
 
     .pf-card-header-info {
       display: flex;
@@ -1391,7 +1598,7 @@
       font-size: 0.8rem;
       color: var(--text-muted);
     }
-    
+
     .pf-badge-new {
       background: var(--bg);
       color: var(--text);
@@ -1419,7 +1626,7 @@
       color: var(--text-muted);
       margin-top: 10px;
     }
-    
+
     .pf-translated a {
       color: #1a73e8;
       text-decoration: none;
@@ -1434,7 +1641,7 @@
       font-size: 0.85rem;
       color: var(--text-muted);
     }
-    
+
     .pf-like i {
       color: #ea4335;
     }
@@ -2069,198 +2276,7 @@
       box-shadow: 0 15px 30px rgba(13, 148, 136, 0.5);
     }
 
-    /* RESPONSIVE */
-    @media(max-width: 1024px) {
-      .hero h1 {
-        font-size: clamp(2.2rem, 4vw, 3rem);
-      }
-
-      .about-grid,
-      .contact-grid {
-        gap: 3rem;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1.5fr 1fr 1fr;
-      }
-    }
-
-    @media(max-width: 900px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 140px;
-        gap: 4rem;
-      }
-
-      .hero-content {
-        max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .hero p {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-btns {
-        justify-content: center;
-      }
-
-      .hero-visual {
-        justify-content: center;
-        width: 100%;
-      }
-
-      .hero-card {
-        max-width: 360px;
-      }
-
-      .floating-badge.top {
-        right: -10px;
-        top: -30px;
-      }
-
-      .floating-badge.bottom {
-        left: -30px;
-        bottom: -50px;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 3rem 1.5rem;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-      }
-
-      .about-img-wrap {
-        max-width: 500px;
-        margin: 0 auto;
-      }
-
-      .about-img {
-        aspect-ratio: 16/10;
-      }
-
-      .about-badge {
-        bottom: 20px;
-        right: 20px;
-        padding: 16px;
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .why-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .pf-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .pf-video-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .ba-masonry {
-        column-count: 2;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .map-frame {
-        min-height: 350px;
-      }
-    }
-
-    @media(max-width: 600px) {
-
-      .nav-links,
-      .nav-cta {
-        display: none;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .pf-stats {
-        grid-template-columns: 1fr;
-      }
-
-      .pf-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .pf-video-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .ba-masonry {
-        column-count: 1;
-      }
-
-      .pf-subtitle {
-        display: none;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        gap: 12px;
-        text-align: center;
-      }
-
-      .appt-cta-box {
-        padding: 2.5rem 1.5rem;
-      }
-
-      .back-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 44px;
-        height: 44px;
-        font-size: 16px;
-      }
-
-      .hero {
-        padding-top: 110px;
-        padding-bottom: 60px;
-      }
-
-      .section-title {
-        font-size: 1.8rem;
-      }
-
-      .contact-info {
-        padding: 2rem 1.5rem;
-      }
-    }
+    /* Layout helpers — Master responsive media queries are defined at the bottom of stylesheet */
 
     /* STATS COUNTER */
     .stats-bar .stat-counter {
@@ -2669,7 +2685,9 @@
     }
 
     [data-theme="dark"] .mobile-menu {
-      background: var(--off-white);
+      background: rgba(15, 23, 42, 0.98);
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     }
 
     [data-theme="dark"] .service-card,
@@ -2778,6 +2796,7 @@
     [data-theme="dark"] .map-frame {
       border-color: var(--border);
     }
+
     [data-theme="dark"] .map-frame iframe {
       filter: invert(90%) hue-rotate(180deg) contrast(95%);
     }
@@ -3008,6 +3027,18 @@
       transform: scale(1.08);
     }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-toggles {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     /* Call Float */
     .call-float {
       position: fixed;
@@ -3116,9 +3147,20 @@
     }
 
     @keyframes pulse-whatsapp {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+
+      70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
     }
 
     /* Section Dividers */
@@ -3130,6 +3172,7 @@
       padding: 0;
       line-height: 0;
     }
+
     .section-divider svg {
       display: block;
       width: 100%;
@@ -3143,6 +3186,7 @@
       padding: 8px;
       margin: -8px;
     }
+
     .contact-item:hover {
       transform: translateX(8px);
       background: var(--teal-bg);
@@ -3152,6 +3196,7 @@
     .map-frame {
       transition: box-shadow 0.4s ease;
     }
+
     .map-frame:hover {
       box-shadow: 0 0 30px rgba(13, 148, 136, 0.2), var(--shadow-lg);
     }
@@ -3160,6 +3205,7 @@
     .social-link {
       transition: all 0.3s ease !important;
     }
+
     .social-link:hover {
       transform: translateY(-4px) scale(1.15) !important;
       box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3) !important;
@@ -3180,7 +3226,10 @@
 
     /* Reduced Motion Accessibility */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
@@ -3189,7 +3238,11 @@
     }
 
     /* Performance Hints */
-    .service-card, .why-card, .trust-card, .hero-card, .floating-badge {
+    .service-card,
+    .why-card,
+    .trust-card,
+    .hero-card,
+    .floating-badge {
       will-change: transform;
     }
 
@@ -3201,6 +3254,7 @@
         height: 50px;
         font-size: 22px;
       }
+
       .whatsapp-float {
         bottom: 75px;
         left: 20px;
@@ -3208,6 +3262,7 @@
         height: 50px;
         font-size: 24px;
       }
+
       .whatsapp-float .wa-tooltip {
         display: none;
       }
@@ -3218,19 +3273,33 @@
       position: relative;
       display: inline-block;
     }
+
     .sparkle-particle {
       position: absolute;
       pointer-events: none;
       z-index: 10;
       animation: sparkleAnim var(--dur, 1.4s) ease-in-out forwards;
     }
+
     .sparkle-particle svg {
       display: block;
     }
+
     @keyframes sparkleAnim {
-      0% { opacity: 0; transform: scale(0) rotate(0deg); }
-      50% { opacity: 1; transform: scale(1) rotate(90deg); }
-      100% { opacity: 0; transform: scale(0) rotate(180deg); }
+      0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1) rotate(90deg);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(0) rotate(180deg);
+      }
     }
 
     /* ══════ INSPIRA-UI: TEXT BLUR REVEAL ══════ */
@@ -3241,6 +3310,7 @@
       transform: translateY(8px);
       animation: blurRevealIn 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
     }
+
     @keyframes blurRevealIn {
       to {
         opacity: 1;
@@ -3254,6 +3324,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .border-beam-card::before {
       content: '';
       position: absolute;
@@ -3270,16 +3341,21 @@
       z-index: 5;
       pointer-events: none;
     }
+
     .border-beam-card:hover::before {
       opacity: 1;
     }
+
     @property --beam-angle {
       syntax: '<angle>';
       initial-value: 0deg;
       inherits: false;
     }
+
     @keyframes borderBeamSpin {
-      to { --beam-angle: 360deg; }
+      to {
+        --beam-angle: 360deg;
+      }
     }
 
     /* ══════ INSPIRA-UI: METEOR EFFECT ══════ */
@@ -3290,6 +3366,7 @@
       pointer-events: none;
       z-index: 1;
     }
+
     .meteor {
       position: absolute;
       width: 2px;
@@ -3298,6 +3375,7 @@
       animation: meteorFall var(--m-dur, 3s) var(--m-delay, 0s) linear infinite;
       opacity: 0;
     }
+
     .meteor::before {
       content: '';
       position: absolute;
@@ -3309,11 +3387,25 @@
       box-shadow: 0 0 8px 2px rgba(45, 212, 191, 0.4);
       transform: translateX(-1px);
     }
+
     @keyframes meteorFall {
-      0% { opacity: 0; transform: translateY(-120px) translateX(0) rotate(215deg); }
-      5% { opacity: 1; }
-      60% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(600px) translateX(-300px) rotate(215deg); }
+      0% {
+        opacity: 0;
+        transform: translateY(-120px) translateX(0) rotate(215deg);
+      }
+
+      5% {
+        opacity: 1;
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(600px) translateX(-300px) rotate(215deg);
+      }
     }
 
     /* ══════ INSPIRA-UI: SHIMMER TEXT ══════ */
@@ -3324,9 +3416,15 @@
       -webkit-text-fill-color: transparent;
       animation: shimmerSweep 3s ease-in-out infinite;
     }
+
     @keyframes shimmerSweep {
-      0% { background-position: 300% center; }
-      100% { background-position: -300% center; }
+      0% {
+        background-position: 300% center;
+      }
+
+      100% {
+        background-position: -300% center;
+      }
     }
 
     /* ══════ INSPIRA-UI: GLOW BORDER ON SERVICE CARDS ══════ */
@@ -3339,8 +3437,9 @@
       opacity: 0;
       transform: translateY(60px) scale(0.96);
       transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .reveal-stagger.visible {
       opacity: 1;
       transform: translateY(0) scale(1);
@@ -3351,15 +3450,18 @@
       opacity: 0;
       transform: translateX(-60px);
       transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .reveal-right {
       opacity: 0;
       transform: translateX(60px);
       transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .reveal-left.visible, .reveal-right.visible {
+
+    .reveal-left.visible,
+    .reveal-right.visible {
       opacity: 1;
       transform: translateX(0);
     }
@@ -3369,8 +3471,9 @@
       opacity: 0;
       transform: translateY(40px) scale(0.9);
       transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-                  transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+
     .reveal-bounce.visible {
       opacity: 1;
       transform: translateY(0) scale(1);
@@ -3383,10 +3486,14 @@
     }
 
     /* ══════ ANIMATE-UI: RIPPLE CLICK ══════ */
-    .btn-primary, .btn-outline, .book-google-btn, .nav-cta {
+    .btn-primary,
+    .btn-outline,
+    .book-google-btn,
+    .nav-cta {
       position: relative;
       overflow: hidden;
     }
+
     .ripple-effect {
       position: absolute;
       border-radius: 50%;
@@ -3396,6 +3503,7 @@
       pointer-events: none;
       z-index: 10;
     }
+
     @keyframes rippleExpand {
       to {
         transform: scale(4);
@@ -3415,13 +3523,32 @@
       transform: translateY(-10px);
       animation: navLinkIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    .nav-links li:nth-child(1) { animation-delay: 0.1s; }
-    .nav-links li:nth-child(2) { animation-delay: 0.18s; }
-    .nav-links li:nth-child(3) { animation-delay: 0.26s; }
-    .nav-links li:nth-child(4) { animation-delay: 0.34s; }
-    .nav-links li:nth-child(5) { animation-delay: 0.42s; }
+
+    .nav-links li:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .nav-links li:nth-child(2) {
+      animation-delay: 0.18s;
+    }
+
+    .nav-links li:nth-child(3) {
+      animation-delay: 0.26s;
+    }
+
+    .nav-links li:nth-child(4) {
+      animation-delay: 0.34s;
+    }
+
+    .nav-links li:nth-child(5) {
+      animation-delay: 0.42s;
+    }
+
     @keyframes navLinkIn {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ══════ INSPIRA-UI: FLOATING PARTICLE BG ══════ */
@@ -3432,6 +3559,7 @@
       pointer-events: none;
       z-index: 1;
     }
+
     .hero-particle {
       position: absolute;
       width: var(--p-size, 4px);
@@ -3441,15 +3569,30 @@
       opacity: var(--p-opacity, 0.25);
       animation: particleFloat var(--p-dur, 8s) var(--p-delay, 0s) ease-in-out infinite;
     }
+
     @keyframes particleFloat {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(30px, -40px) scale(1.2); }
-      50% { transform: translate(-20px, -80px) scale(0.8); }
-      75% { transform: translate(40px, -30px) scale(1.1); }
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      25% {
+        transform: translate(30px, -40px) scale(1.2);
+      }
+
+      50% {
+        transform: translate(-20px, -80px) scale(0.8);
+      }
+
+      75% {
+        transform: translate(40px, -30px) scale(1.1);
+      }
     }
 
     /* ══════ INSPIRA-UI: HERO PARALLAX LAYERS ══════ */
-    .hero::before, .hero::after {
+    .hero::before,
+    .hero::after {
       transition: transform 0.1s linear;
       will-change: transform;
     }
@@ -3461,12 +3604,14 @@
       height: 1.1em;
       vertical-align: bottom;
     }
+
     .digit-roller-inner {
       display: flex;
       flex-direction: column;
       transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: transform;
     }
+
     .digit-roller-num {
       height: 1.1em;
       display: flex;
@@ -3476,29 +3621,637 @@
     }
 
     /* ══════ GPU HINTS ══════ */
-    .hero-card, .service-card, .why-card, .trust-card, .floating-badge, .pf-card {
+    .hero-card,
+    .service-card,
+    .why-card,
+    .trust-card,
+    .floating-badge,
+    .pf-card {
       will-change: transform;
     }
 
     /* ══════ ACCESSIBILITY: REDUCE MOTION ══════ */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+
+      *,
+      *::before,
+      *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
-      .sparkle-particle, .meteor, .hero-particle {
+
+      .sparkle-particle,
+      .meteor,
+      .hero-particle {
         display: none !important;
       }
+
       .blur-reveal-word {
         opacity: 1 !important;
         filter: none !important;
         transform: none !important;
       }
-      .reveal, .reveal-stagger, .reveal-left, .reveal-right, .reveal-bounce {
+
+      .reveal,
+      .reveal-stagger,
+      .reveal-left,
+      .reveal-right,
+      .reveal-bounce {
         opacity: 1 !important;
         transform: none !important;
+      }
+    }
+    /* ═══════════════════════════════════════════════════════════════
+       MASTER RESPONSIVE STYLES (MOBILE & TABLET UI ENHANCEMENTS)
+       ═══════════════════════════════════════════════════════════════ */
+
+    /* Tablet and Small Laptops (<= 1024px) */
+    @media (max-width: 1024px) {
+      .hero h1 {
+        font-size: clamp(2.2rem, 4vw, 3rem);
+      }
+      .about-grid,
+      .contact-grid {
+        gap: 3rem;
+      }
+      .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr;
+      }
+    }
+
+    /* Tablets, Foldables & Large Mobiles (<= 900px) */
+    @media (max-width: 900px) {
+      /* Navigation Bar */
+      nav {
+        padding: 0 16px;
+      }
+
+      .nav-inner {
+        height: 66px;
+      }
+
+      .nav-links,
+      .nav-actions > .nav-dropdown {
+        display: none !important;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-toggles {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* Compact, beautiful switches for mobile */
+      .theme-toggle,
+      .lang-toggle {
+        width: 44px;
+        height: 24px;
+        padding: 0 4px;
+        border-radius: 20px;
+      }
+
+      .theme-toggle .toggle-knob,
+      .lang-toggle .lang-knob {
+        width: 18px;
+        height: 18px;
+        top: 2px;
+        left: 2px;
+      }
+
+      [data-theme="dark"] .theme-toggle .toggle-knob,
+      [data-lang="hi"] .lang-toggle .lang-knob {
+        left: calc(100% - 20px);
+      }
+
+      .theme-toggle .toggle-icon {
+        font-size: 10px;
+      }
+
+      .lang-toggle .lang-label {
+        font-size: 8.5px;
+        font-weight: 700;
+      }
+
+      /* Logo */
+      .logo {
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+      }
+
+      .logo-text {
+        font-size: 1.15rem;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      .logo-text span {
+        font-size: 0.62rem;
+        letter-spacing: 0.8px;
+        font-weight: 600;
+        margin-top: 2px;
+        display: block;
+      }
+
+      /* Hero Section */
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 100px;
+        padding-bottom: 50px;
+        gap: 3rem;
+      }
+
+      .hero-content {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-badge {
+        max-width: 94%;
+        margin-bottom: 1.25rem;
+        font-size: 0.82rem;
+        padding: 7px 18px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.1rem, 7vw, 2.9rem);
+        line-height: 1.22;
+        margin-bottom: 1.25rem;
+      }
+
+      .hero p,
+      .hero-subtitle-blur {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 520px;
+        font-size: 0.98rem;
+        line-height: 1.65;
+        margin-bottom: 1.75rem;
+      }
+
+      .hero-btns {
+        width: 100%;
+        max-width: 380px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .hero-btns .nav-dropdown {
+        width: 100%;
+      }
+
+      .hero-btns .btn-primary {
+        width: 100%;
+        justify-content: center;
+        padding: 13px 20px;
+        font-size: 0.98rem;
+        border-radius: 14px;
+        box-shadow: 0 6px 20px rgba(13, 148, 136, 0.28);
+      }
+
+      .hero-btns .nav-dropdown-content {
+        position: static;
+        width: 100%;
+        margin-top: 8px;
+        border-radius: 14px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .hero-btns-secondary {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .hero-btns-secondary .btn-outline {
+        flex: 1;
+        justify-content: center;
+        padding: 12px 10px;
+        font-size: 0.88rem;
+        white-space: nowrap;
+        border-radius: 12px;
+        text-align: center;
+      }
+
+      /* Hero Visual Card */
+      .hero-visual {
+        justify-content: center;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+
+      .hero-visual > div {
+        width: 100%;
+        max-width: 340px;
+        position: relative;
+      }
+
+      .hero-card {
+        max-width: 100%;
+        padding: 2rem 1.25rem 1.5rem;
+        border-radius: 24px;
+      }
+
+      .dr-avatar {
+        width: 130px;
+        height: 130px;
+        margin: 0 auto 1.25rem;
+      }
+
+      .card-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-top: 1.25rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .card-stats .stat-item {
+        padding: 8px 6px;
+        background: rgba(13, 148, 136, 0.05);
+        border-radius: 10px;
+        border: 1px solid rgba(13, 148, 136, 0.08);
+      }
+
+      .card-stats .stat-num {
+        font-size: 1.05rem;
+      }
+
+      .card-stats .stat-label {
+        font-size: 0.72rem;
+      }
+
+      .floating-badge.top {
+        right: 6px;
+        top: -12px;
+        font-size: 0.78rem;
+        padding: 6px 12px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .floating-badge.bottom {
+        left: 6px;
+        bottom: -12px;
+        font-size: 0.78rem;
+        padding: 6px 12px;
+        box-shadow: var(--shadow-md);
+      }
+
+      /* Stats Bar */
+      .stats-bar {
+        padding: 2.5rem 1rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem 1rem;
+      }
+
+      .stats-bar .num {
+        font-size: 2.4rem;
+        margin-bottom: 4px;
+      }
+
+      .stats-bar .lbl {
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+      }
+
+      /* About & Grids */
+      .about-grid,
+      .contact-grid,
+      .safe-hands-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .about-img-wrap {
+        max-width: 460px;
+        margin: 0 auto;
+        border-radius: 20px;
+      }
+
+      .about-badge {
+        bottom: 14px;
+        right: 14px;
+        padding: 10px 14px;
+        border-radius: 12px;
+      }
+
+      .services-grid,
+      .why-grid,
+      .pf-grid,
+      .pf-video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+
+      .ba-masonry {
+        column-count: 2;
+      }
+
+      .map-frame {
+        min-height: 320px;
+        border-radius: 20px;
+      }
+    }
+
+    /* Standard Mobile Phones (<= 600px) */
+    @media (max-width: 600px) {
+      /* Header */
+      nav {
+        padding: 0 14px;
+      }
+
+      .nav-inner {
+        height: 62px;
+      }
+
+      .nav-actions {
+        gap: 6px;
+      }
+
+      .nav-toggles {
+        gap: 5px;
+      }
+
+      .theme-toggle,
+      .lang-toggle {
+        width: 40px;
+        height: 23px;
+        padding: 0 3px;
+      }
+
+      .theme-toggle .toggle-knob,
+      .lang-toggle .lang-knob {
+        width: 17px;
+        height: 17px;
+      }
+
+      [data-theme="dark"] .theme-toggle .toggle-knob,
+      [data-lang="hi"] .lang-toggle .lang-knob {
+        left: calc(100% - 19px);
+      }
+
+      .hamburger {
+        width: 36px;
+        height: 36px;
+      }
+
+      .logo-icon {
+        width: 34px;
+        height: 34px;
+      }
+
+      .logo-text {
+        font-size: 1.08rem;
+      }
+
+      .logo-text span {
+        font-size: 0.6rem;
+        letter-spacing: 0.6px;
+      }
+
+      /* Hero */
+      .hero {
+        padding-top: 88px;
+        padding-bottom: 40px;
+        gap: 2.25rem;
+      }
+
+      .hero-badge {
+        font-size: 0.78rem;
+        padding: 6px 14px;
+        margin-bottom: 1rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.9rem, 7.5vw, 2.4rem);
+        line-height: 1.22;
+      }
+
+      .hero p,
+      .hero-subtitle-blur {
+        font-size: 0.92rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-btns {
+        max-width: 340px;
+      }
+
+      .hero-btns-secondary .btn-outline {
+        padding: 11px 8px;
+        font-size: 0.84rem;
+      }
+
+      /* Doctor Card & Floating Badges */
+      .hero-card {
+        padding: 1.75rem 1.15rem 1.35rem;
+      }
+
+      .hero-card h3 {
+        font-size: 1.3rem;
+      }
+
+      .hero-card .subtitle {
+        font-size: 0.85rem;
+      }
+
+      .dr-avatar {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1rem;
+      }
+
+      .floating-badge.top {
+        right: 4px;
+        top: -10px;
+        font-size: 0.74rem;
+        padding: 5px 10px;
+      }
+
+      .floating-badge.bottom {
+        left: 4px;
+        bottom: -10px;
+        font-size: 0.74rem;
+        padding: 5px 10px;
+      }
+
+      /* 1-Column Content Sections */
+      .services-grid,
+      .why-grid,
+      .pf-grid,
+      .pf-video-grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+        margin: 0 auto;
+        gap: 1.25rem;
+      }
+
+      .service-card,
+      .why-card,
+      .trust-card {
+        border-radius: 18px;
+      }
+
+      .service-card .service-img {
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .section-title {
+        font-size: 1.7rem;
+        line-height: 1.25;
+      }
+
+      .section-sub {
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .ba-masonry {
+        column-count: 1;
+      }
+
+      .pf-subtitle {
+        display: none;
+      }
+
+      .contact-info {
+        padding: 1.75rem 1.25rem;
+        border-radius: 20px;
+      }
+
+      .map-frame {
+        min-height: 260px;
+      }
+
+      /* Floating Action Buttons */
+      .call-float {
+        bottom: 22px;
+        right: 18px;
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+        box-shadow: 0 6px 18px rgba(13, 148, 136, 0.4);
+      }
+
+      .whatsapp-float {
+        bottom: 22px;
+        left: 18px;
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+        box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+      }
+
+      .whatsapp-float .wa-tooltip {
+        display: none !important;
+      }
+
+      .back-to-top {
+        bottom: 80px;
+        right: 18px;
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+      }
+
+      /* Footer */
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .appt-cta-box {
+        padding: 2rem 1.25rem;
+        border-radius: 20px;
+      }
+    }
+
+    /* Small Mobile Devices (<= 380px) */
+    @media (max-width: 380px) {
+      nav {
+        padding: 0 10px;
+      }
+
+      .logo-icon {
+        width: 30px;
+        height: 30px;
+      }
+
+      .logo-text {
+        font-size: 0.98rem;
+      }
+
+      .logo-text span {
+        font-size: 0.54rem;
+        letter-spacing: 0.4px;
+      }
+
+      .theme-toggle,
+      .lang-toggle {
+        width: 36px;
+        height: 22px;
+      }
+
+      .theme-toggle .toggle-knob,
+      .lang-toggle .lang-knob {
+        width: 15px;
+        height: 15px;
+      }
+
+      [data-theme="dark"] .theme-toggle .toggle-knob,
+      [data-lang="hi"] .lang-toggle .lang-knob {
+        left: calc(100% - 17px);
+      }
+
+      .hamburger {
+        width: 34px;
+        height: 34px;
+      }
+
+      .hamburger span {
+        width: 17px;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-btns-secondary {
+        flex-direction: column;
       }
     }
   </style>
@@ -3520,16 +4273,19 @@
         <li><a href="#testimonials">Reviews</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <div style="display:flex; align-items:center; gap: 1.5rem;">
-        <div id="themeToggle" class="theme-toggle" role="button" tabindex="0" aria-label="Toggle Dark Mode">
-          <i class="fas fa-sun toggle-icon toggle-sun"></i>
-          <i class="fas fa-moon toggle-icon toggle-moon"></i>
-          <div class="toggle-knob"></div>
-        </div>
-        <div id="langToggle" class="lang-toggle" role="button" tabindex="0" aria-label="Switch Language English / Hindi" title="EN / हिं">
-          <span class="lang-label lang-en">EN</span>
-          <span class="lang-label lang-hi">हिं</span>
-          <div class="lang-knob"></div>
+      <div class="nav-actions">
+        <div class="nav-toggles">
+          <div id="themeToggle" class="theme-toggle" role="button" tabindex="0" aria-label="Toggle Dark Mode">
+            <i class="fas fa-sun toggle-icon toggle-sun"></i>
+            <i class="fas fa-moon toggle-icon toggle-moon"></i>
+            <div class="toggle-knob"></div>
+          </div>
+          <div id="langToggle" class="lang-toggle" role="button" tabindex="0" aria-label="Switch Language English / Hindi"
+            title="EN / हिं">
+            <span class="lang-label lang-en">EN</span>
+            <span class="lang-label lang-hi">हिं</span>
+            <div class="lang-knob"></div>
+          </div>
         </div>
         <div class="nav-dropdown">
           <a href="javascript:void(0)" class="nav-cta" id="navBookBtn">Book Appointment <i class="fas fa-chevron-down"
@@ -3552,17 +4308,38 @@
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#home" onclick="toggleMenu()">Home</a>
-    <a href="#about" onclick="toggleMenu()">About</a>
-    <a href="#services" onclick="toggleMenu()">Services</a>
-    <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScUwhHgwBxD6rYFw_G_GZKGCePkjrBqBoRSTR6Wa9SAQP_Sqg/viewform?usp=dialog"
-      target="_blank" rel="noopener noreferrer" onclick="toggleMenu()">Book Online Consultation</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw1SVFYFWLikEQotytzcL9DZpBBPp-vAdXxF5OP81Dfw1Og/viewform?usp=dialog"
-      target="_blank" rel="noopener noreferrer" onclick="toggleMenu()">Book In Clinic Consultation</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc6oCoicyxrtxPDeBXx_Ol5To5GDX2SuhACHuiSShiQWYZgxA/viewform?usp=dialog"
-      target="_blank" rel="noopener noreferrer" onclick="toggleMenu()">Submit Feedback</a>
-    <a href="#contact" onclick="toggleMenu()">Contact</a>
+    <div class="mobile-menu-links">
+      <a href="#home" class="mobile-nav-link" onclick="toggleMenu()"><i class="fas fa-home"></i> Home</a>
+      <a href="#about" class="mobile-nav-link" onclick="toggleMenu()"><i class="fas fa-user-md"></i> About</a>
+      <a href="#services" class="mobile-nav-link" onclick="toggleMenu()"><i class="fas fa-hand-holding-medical"></i> Services</a>
+      <a href="#testimonials" class="mobile-nav-link" onclick="toggleMenu()"><i class="fas fa-star"></i> Reviews</a>
+      <a href="#contact" class="mobile-nav-link" onclick="toggleMenu()"><i class="fas fa-map-marker-alt"></i> Contact</a>
+    </div>
+
+    <div class="mobile-menu-cta-wrap">
+      <div class="mobile-menu-cta-title">Appointments &amp; Feedback</div>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScUwhHgwBxD6rYFw_G_GZKGCePkjrBqBoRSTR6Wa9SAQP_Sqg/viewform?usp=dialog"
+        target="_blank" rel="noopener noreferrer" class="mobile-menu-book-btn" onclick="toggleMenu()">
+        <i class="fas fa-video"></i> Book Online Consultation
+      </a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScDw1SVFYFWLikEQotytzcL9DZpBBPp-vAdXxF5OP81Dfw1Og/viewform?usp=dialog"
+        target="_blank" rel="noopener noreferrer" class="mobile-menu-book-btn in-clinic" onclick="toggleMenu()">
+        <i class="fas fa-clinic-medical"></i> Book In-Clinic Consultation
+      </a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc6oCoicyxrtxPDeBXx_Ol5To5GDX2SuhACHuiSShiQWYZgxA/viewform?usp=dialog"
+        target="_blank" rel="noopener noreferrer" class="mobile-feedback-link" onclick="toggleMenu()">
+        <i class="fas fa-comment-dots"></i> Submit Patient Feedback
+      </a>
+      <div class="mobile-menu-quick-row">
+        <a href="tel:+917601839607" class="mobile-menu-quick-btn mobile-menu-call">
+          <i class="fas fa-phone-alt"></i> Call Clinic
+        </a>
+        <a href="https://wa.me/917601839607?text=Hello%20Dr.%20Gunja%20Gupta%2C%20I%20would%20like%20to%20book%20an%20appointment."
+          target="_blank" rel="noopener noreferrer" class="mobile-menu-quick-btn mobile-menu-wa">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+      </div>
+    </div>
   </div>
 
   <!-- HERO -->
@@ -3571,14 +4348,15 @@
     <div class="hero-particles" id="heroParticles"></div>
     <div class="hero-content">
       <div class="hero-badge"><i class="fas fa-award"></i> Trusted Homeopathy Clinic in Jabalpur</div>
-      <h1>Heal Naturally,<br /><em class="sparkle-wrap" id="heroSparkle">Live Fully</em> —<br />Your Wellness Starts Here</h1>
-      <p class="hero-subtitle-blur" id="heroSubtitle">Gentle, effective homeopathic treatment combined with professional counselling. From women's health to skin
+      <h1>Heal Naturally,<br /><em class="sparkle-wrap" id="heroSparkle">Live Fully</em> —<br />Your Wellness Starts
+        Here</h1>
+      <p class="hero-subtitle-blur" id="heroSubtitle">Gentle, effective homeopathic treatment combined with professional
+        counselling. From women's health to skin
         care, children's issues to mental wellness — we treat the root cause, not just symptoms.</p>
       <div class="hero-btns">
         <div class="nav-dropdown" style="z-index: 10;">
-          <a href="javascript:void(0)" class="btn-primary" id="heroBookBtn"><i
-              class="fas fa-calendar-check"></i> Book Appointment <i class="fas fa-chevron-down"
-              style="font-size: 0.8em; margin-left: 5px;"></i></a>
+          <a href="javascript:void(0)" class="btn-primary" id="heroBookBtn"><i class="fas fa-calendar-check"></i> Book
+            Appointment <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
           <div class="nav-dropdown-content" style="left: 0; right: auto; min-width: 250px;">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLScUwhHgwBxD6rYFw_G_GZKGCePkjrBqBoRSTR6Wa9SAQP_Sqg/viewform?usp=dialog"
               target="_blank" rel="noopener noreferrer"><i class="fas fa-video"></i> Online Consultation</a>
@@ -3588,11 +4366,13 @@
               target="_blank" rel="noopener noreferrer"><i class="fas fa-comment-dots"></i> Submit Feedback</a>
           </div>
         </div>
-        <a href="tel:+917601839607" class="btn-outline"
-          style="border-color:var(--teal); color:var(--teal); background: rgba(13,148,136,0.1);"><i
-            class="fas fa-phone-alt"></i> Call Clinic</a>
-        <a href="#services" class="btn-outline" id="heroServicesBtn"><i class="fas fa-hand-holding-medical"></i> Our
-          Services</a>
+        <div class="hero-btns-secondary">
+          <a href="tel:+917601839607" class="btn-outline"
+            style="border-color:var(--teal); color:var(--teal); background: rgba(13,148,136,0.1);"><i
+              class="fas fa-phone-alt"></i> Call Clinic</a>
+          <a href="#services" class="btn-outline" id="heroServicesBtn"><i class="fas fa-hand-holding-medical"></i> Our
+            Services</a>
+        </div>
       </div>
     </div>
     <div class="hero-visual">
@@ -3618,7 +4398,7 @@
   <!-- DIVIDER: Hero → Stats -->
   <div class="section-divider" style="background: var(--white);">
     <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,20 Q360,40 720,20 T1440,20 L1440,40 L0,40 Z" fill="var(--teal-dark)"/>
+      <path d="M0,20 Q360,40 720,20 T1440,20 L1440,40 L0,40 Z" fill="var(--teal-dark)" />
     </svg>
   </div>
 
@@ -3666,12 +4446,16 @@
             cases</li>
           <li><i class="fas fa-clock"></i> Each consultation lasts 30–40 minutes for in-depth assessment</li>
         </ul>
-        <div class="key-strengths-box" id="key-strengths-box" style="margin-top: 1.5rem; background: var(--teal-bg); border-left: 4px solid var(--teal); padding: 1.25rem 1.5rem; border-radius: 16px; box-shadow: var(--shadow-sm);">
-          <h4 style="color: var(--teal-dark); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+        <div class="key-strengths-box" id="key-strengths-box"
+          style="margin-top: 1.5rem; background: var(--teal-bg); border-left: 4px solid var(--teal); padding: 1.25rem 1.5rem; border-radius: 16px; box-shadow: var(--shadow-sm);">
+          <h4
+            style="color: var(--teal-dark); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
             <i class="fas fa-star" style="color: var(--gold);"></i> Key Strengths
           </h4>
           <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; margin: 0;">
-            Patients value Dr. Gunja's detailed consultations, individualized treatment plans, and compassionate approach to care. Her commitment to understanding the underlying causes of health concerns and providing holistic, patient-focused care—rather than simply addressing symptoms—is highly appreciated.
+            Patients value Dr. Gunja's detailed consultations, individualized treatment plans, and compassionate
+            approach to care. Her commitment to understanding the underlying causes of health concerns and providing
+            holistic, patient-focused care—rather than simply addressing symptoms—is highly appreciated.
           </p>
         </div>
         <div class="nav-dropdown" style="display:inline-block; margin-top:0.5rem; z-index: 10;">
@@ -3694,41 +4478,50 @@
   <!-- SERVICES -->
   <section id="services" class="services">
     <div class="center reveal">
-      <span class="section-tag"><i class="fas fa-hand-holding-medical" style="color: var(--teal);"></i> What We Treat</span>
+      <span class="section-tag"><i class="fas fa-hand-holding-medical" style="color: var(--teal);"></i> What We
+        Treat</span>
       <h2 class="section-title">Our Homeopathic Services</h2>
-      <p class="section-sub">Comprehensive, natural healing tailored to your unique health needs — combining classical homeopathic remedies with compassionate counselling.</p>
+      <p class="section-sub">Comprehensive, natural healing tailored to your unique health needs — combining classical
+        homeopathic remedies with compassionate counselling.</p>
     </div>
     <div class="services-grid reveal">
       <div class="service-card border-beam-card" id="service-womens-health">
         <img loading="eager" decoding="async" src="images/womens_health.png" alt="Women's Health" class="service-img" />
         <div class="service-content">
           <h3>Women's Health</h3>
-          <p>Expert treatment for thyroid disorders, irregular menses, PCOS, fibroids, and fibroadenoma. Gentle, natural remedies tailored to every woman's unique needs.</p>
+          <p>Expert treatment for thyroid disorders, irregular menses, PCOS, fibroids, and fibroadenoma. Gentle, natural
+            remedies tailored to every woman's unique needs.</p>
         </div>
       </div>
       <div class="service-card border-beam-card" id="service-infertility">
-        <img loading="eager" decoding="async" src="images/female_infertility.png?v=2" alt="Infertility in Females" class="service-img" />
+        <img loading="eager" decoding="async" src="images/female_infertility.png?v=2" alt="Infertility in Females"
+          class="service-img" />
         <div class="service-content">
           <h3>Infertility in Females</h3>
-          <p>Expert homeopathic care for female infertility, addressing ovulation difficulties, hormonal imbalances, blocked fallopian tubes, and reproductive wellness naturally.</p>
+          <p>Expert homeopathic care for female infertility, addressing ovulation difficulties, hormonal imbalances,
+            blocked fallopian tubes, and reproductive wellness naturally.</p>
         </div>
       </div>
       <div class="service-card border-beam-card" id="service-children">
         <img loading="eager" decoding="async" src="images/children.png" alt="Children's Health" class="service-img" />
         <div class="service-content">
           <h3>Children's Health</h3>
-          <p>Safe, gentle care for children — constipation, behavioural issues, recurrent cough &amp; cold, fever, and stomach ache treated naturally.</p>
+          <p>Safe, gentle care for children — constipation, behavioural issues, recurrent cough &amp; cold, fever, and
+            stomach ache treated naturally.</p>
         </div>
       </div>
       <div class="service-card border-beam-card" id="service-mental">
-        <img loading="eager" decoding="async" src="images/mental.png" alt="Mental &amp; Psychiatric Disorders" class="service-img" />
+        <img loading="eager" decoding="async" src="images/mental.png" alt="Mental &amp; Psychiatric Disorders"
+          class="service-img" />
         <div class="service-content">
           <h3>Mental &amp; Psychiatric Disorders</h3>
-          <p>Professional homeopathic care &amp; counselling for anxiety, depression, sleep disorders, panic attacks, fears/phobias, and trauma or stress-related conditions.</p>
+          <p>Professional homeopathic care &amp; counselling for anxiety, depression, sleep disorders, panic attacks,
+            fears/phobias, and trauma or stress-related conditions.</p>
         </div>
       </div>
       <div class="service-card border-beam-card" id="service-respiratory">
-        <img loading="eager" decoding="async" src="images/respiratory.png" alt="Respiratory Disorders" class="service-img" />
+        <img loading="eager" decoding="async" src="images/respiratory.png" alt="Respiratory Disorders"
+          class="service-img" />
         <div class="service-content">
           <h3>Respiratory Disorders</h3>
           <p>bronchitis, Asthma, allergies, Throat infections, recurrent cough/cold, difficulty in breathing, etc.</p>
@@ -3738,21 +4531,24 @@
         <img loading="eager" decoding="async" src="images/skin_care.png" alt="Skin Care" class="service-img" />
         <div class="service-content">
           <h3>Skin Care</h3>
-          <p>Effective homeopathic solutions for acne, pimples, dermatitis, melasma, and psoriasis — treating from within for lasting, clear skin.</p>
+          <p>Effective homeopathic solutions for acne, pimples, dermatitis, melasma, and psoriasis — treating from
+            within for lasting, clear skin.</p>
         </div>
       </div>
       <div class="service-card border-beam-card" id="service-hair">
         <img loading="eager" decoding="async" src="images/hair_fall.png" alt="Hair Care" class="service-img" />
         <div class="service-content">
           <h3>Hair Care</h3>
-          <p>Address the root cause of hair fall with safe, natural homeopathic medicines that promote healthy hair growth without side effects.</p>
+          <p>Address the root cause of hair fall with safe, natural homeopathic medicines that promote healthy hair
+            growth without side effects.</p>
         </div>
       </div>
       <div class="service-card border-beam-card" id="service-digestive">
         <img loading="eager" decoding="async" src="images/digestive.png" alt="Digestive Health" class="service-img" />
         <div class="service-content">
           <h3>Digestive Health</h3>
-          <p>Natural treatment for digestive issues including acidity, constipation, IBS, and other gastrointestinal problems for lasting gut health.</p>
+          <p>Natural treatment for digestive issues including acidity, constipation, IBS, and other gastrointestinal
+            problems for lasting gut health.</p>
         </div>
       </div>
 
@@ -3762,7 +4558,7 @@
   <!-- DIVIDER: Services → Why -->
   <div class="section-divider" style="background: var(--off-white);">
     <svg viewBox="0 0 1440 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,20 Q360,0 720,20 T1440,20 L1440,40 L0,40 Z" fill="var(--teal-dark)"/>
+      <path d="M0,20 Q360,0 720,20 T1440,20 L1440,40 L0,40 Z" fill="var(--teal-dark)" />
     </svg>
   </div>
 
@@ -3771,30 +4567,38 @@
     <!-- INSPIRA-UI: Meteors -->
     <div class="meteor-container" id="meteorContainer"></div>
     <div class="center reveal">
-      <span class="section-tag"><i class="fas fa-award" style="color: #fbbf24; margin-right: 6px;"></i> Why Choose Us</span>
+      <span class="section-tag"><i class="fas fa-award" style="color: #fbbf24; margin-right: 6px;"></i> Why Choose
+        Us</span>
       <h2 class="section-title">Why Choose Dr. Gunja Gupta?</h2>
-      <p class="section-sub">Because we treat the root cause, not just symptoms. Combining 13+ years of clinical homeopathic expertise with professional psychological counselling, Dr. Gunja provides gentle, personalized healing with dedicated 30–40 minute consultations where every patient is heard, understood, and completely cared for.</p>
+      <p class="section-sub">Because we treat the root cause, not just symptoms. Combining 13+ years of clinical
+        homeopathic expertise with professional psychological counselling, Dr. Gunja provides gentle, personalized
+        healing with dedicated 30–40 minute consultations where every patient is heard, understood, and completely cared
+        for.</p>
     </div>
     <div class="why-grid reveal">
       <div class="why-card reveal-left">
         <div class="why-icon"><i class="fas fa-seedling"></i></div>
         <h3>100% Natural &amp; Safe</h3>
-        <p>Gentle, side-effect-free homeopathic remedies that activate your body's natural restorative power without harmful chemicals.</p>
+        <p>Gentle, side-effect-free homeopathic remedies that activate your body's natural restorative power without
+          harmful chemicals.</p>
       </div>
       <div class="why-card reveal-right">
         <div class="why-icon"><i class="fas fa-brain"></i></div>
         <h3>Mind &amp; Body Harmony</h3>
-        <p>A unique synergy of classical homeopathy and professional counselling to treat physical illnesses and emotional stress together.</p>
+        <p>A unique synergy of classical homeopathy and professional counselling to treat physical illnesses and
+          emotional stress together.</p>
       </div>
       <div class="why-card reveal-left">
         <div class="why-icon"><i class="fas fa-user-clock"></i></div>
         <h3>30–40 Min Consultations</h3>
-        <p>No rushed visits. Every appointment is a detailed 30–40 minute session to thoroughly understand your symptoms and personal history.</p>
+        <p>No rushed visits. Every appointment is a detailed 30–40 minute session to thoroughly understand your symptoms
+          and personal history.</p>
       </div>
       <div class="why-card reveal-right">
         <div class="why-icon"><i class="fas fa-bullseye"></i></div>
         <h3>Root-Cause Healing</h3>
-        <p>We don't simply mask symptoms — we identify and eliminate the underlying causes to ensure lasting, long-term health.</p>
+        <p>We don't simply mask symptoms — we identify and eliminate the underlying causes to ensure lasting, long-term
+          health.</p>
       </div>
     </div>
   </section>
@@ -3896,7 +4700,7 @@
         <button class="pf-scroll-btn right" id="pfScrollRight" aria-label="Scroll right"><i
             class="fas fa-chevron-right"></i></button>
         <div class="pf-grid" id="pfGrid">
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-brown">C</div>
@@ -3911,9 +4715,11 @@
               <div class="pf-time">a week ago</div>
               <div class="pf-badge-new">New</div>
             </div>
-            <p class="pf-text">I have been suffering from cyst problems for a long time. I got treatment done many times but the problem did not get cured but after getting treatment from Dr. Gunja Mam, now I am feeling very good and my problem has also got cured.</p>
+            <p class="pf-text">I have been suffering from cyst problems for a long time. I got treatment done many times
+              but the problem did not get cured but after getting treatment from Dr. Gunja Mam, now I am feeling very
+              good and my problem has also got cured.</p>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-blue">U</div>
@@ -3927,10 +4733,13 @@
               <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               <div class="pf-time">3 months ago</div>
             </div>
-            <p class="pf-text">First, I had a stomach ache. I got treated in many places but it didn't get better. But when I told the mam about my problem, she treated me and I have been much better since then. I used to have side effects from English medicines, but not with homeopathy. My and my daughter's treatment has been done, and we are very comfortable.</p>
+            <p class="pf-text">First, I had a stomach ache. I got treated in many places but it didn't get better. But
+              when I told the mam about my problem, she treated me and I have been much better since then. I used to
+              have side effects from English medicines, but not with homeopathy. My and my daughter's treatment has been
+              done, and we are very comfortable.</p>
             <div class="pf-like"><i class="fas fa-heart"></i> 1</div>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-teal">SP</div>
@@ -3944,10 +4753,14 @@
               <div class="pf-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               <div class="pf-time">a year ago</div>
             </div>
-            <p class="pf-text">I strongly recommend Dr. Gunja Gupta for all types of chronic diseases. Her online consultation is as effective as the offline one. I have been consulting her for more than 3 months now and her treatment has helped me heal my body as a whole. Her medicines are very effective and have relieved my symptoms within a week. If you are looking for a sustainable approach to health and well being, Dr. Gunja is your go to person!</p>
+            <p class="pf-text">I strongly recommend Dr. Gunja Gupta for all types of chronic diseases. Her online
+              consultation is as effective as the offline one. I have been consulting her for more than 3 months now and
+              her treatment has helped me heal my body as a whole. Her medicines are very effective and have relieved my
+              symptoms within a week. If you are looking for a sustainable approach to health and well being, Dr. Gunja
+              is your go to person!</p>
             <div class="pf-like"><i class="fas fa-heart"></i> 1</div>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-green">S</div>
@@ -3962,10 +4775,14 @@
               <div class="pf-time">4 hours ago</div>
               <div class="pf-badge-new">New</div>
             </div>
-            <p class="pf-text">I would like to share my experience with fibroadenoma. I was diagnosed after noticing a small lump, which initially made me quite anxious. However, with proper guidance and care, my condition has remained stable, and I feel much better now.</p>
-            <p class="pf-text" style="margin-top:8px;">The pain and discomfort are minimal, and I have been able to manage it well. Overall, my experience has been positive, and I feel more aware and in control of my health.</p>
+            <p class="pf-text">I would like to share my experience with fibroadenoma. I was diagnosed after noticing a
+              small lump, which initially made me quite anxious. However, with proper guidance and care, my condition
+              has remained stable, and I feel much better now.</p>
+            <p class="pf-text" style="margin-top:8px;">The pain and discomfort are minimal, and I have been able to
+              manage it well. Overall, my experience has been positive, and I feel more aware and in control of my
+              health.</p>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-brown">R</div>
@@ -3980,11 +4797,13 @@
               <div class="pf-time">4 hours ago</div>
               <div class="pf-badge-new">New</div>
             </div>
-            <p class="pf-text">I took treatment from Dr. Gunja. I was feeling weak, I took treatment from him for 1 month. My body got treated very well, the effect came quickly, the weakness of the body got energy and hair. Thank you doctor Gunja</p>
+            <p class="pf-text">I took treatment from Dr. Gunja. I was feeling weak, I took treatment from him for 1
+              month. My body got treated very well, the effect came quickly, the weakness of the body got energy and
+              hair. Thank you doctor Gunja</p>
             <div class="pf-translated">Translated by Google &middot; <a href="#">See original (Hindi)</a></div>
             <div class="pf-like"><i class="fas fa-heart"></i> 1</div>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-blue">D</div>
@@ -4002,7 +4821,7 @@
               patients and their diagnosis. She is god gift for the Jabalpur periphery. Online consultation also
               available.</p>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-teal">DG</div>
@@ -4019,7 +4838,7 @@
             <p class="pf-text">Incredibly knowledgeable, attentive, and compassionate. Personalized treatment brought
               significant relief from a chronic health issue I had for years.</p>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-amber">A</div>
@@ -4036,7 +4855,7 @@
             <p class="pf-text">Very thorough homeopathic doctor who gives few focused medicines after thorough
               examination. Thanks doctor!</p>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-blue">GL</div>
@@ -4053,7 +4872,7 @@
             <p class="pf-text">Dr. Gunja is brilliant, polite, knowledgeable and most humble. She has excellent command
               on treatment of diseases.</p>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-teal">AS</div>
@@ -4070,7 +4889,7 @@
             <p class="pf-text">Very good experience, she understands everyone's feelings and has intelligent knowledge
               about homeopathy treatment in Jabalpur.</p>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-red">RM</div>
@@ -4087,7 +4906,7 @@
             <p class="pf-text">Great experience with mam — great doctor, took time to listen, attentive and truly cares
               about patient. Highly recommend!</p>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-amber">GS</div>
@@ -4104,7 +4923,7 @@
             <p class="pf-text">One of the finest doctors who goes in depth to understand, empathise and provides
               feasible treatment. Strongly recommended.</p>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-blue">BA</div>
@@ -4121,7 +4940,7 @@
             <p class="pf-text">An honest, dedicated and committed doctor I have come across in my life. Will surely
               recommend everyone, especially online consulting — it's too good.</p>
           </div>
-          
+
           <div class="pf-card">
             <div class="pf-card-header">
               <div class="pf-avatar pf-av-teal">AG</div>
@@ -4209,7 +5028,8 @@
             <div class="pf-video-thumb"><video loading="lazy" src="images/111.mp4" controls preload="metadata"></video>
               <div class="pf-play"><i class="fas fa-play"></i></div>
             </div>
-            <div class="pf-video-label">Patient feedback &amp; review<br><span class="pf-video-tag">Verified patient</span></div>
+            <div class="pf-video-label">Patient feedback &amp; review<br><span class="pf-video-tag">Verified
+                patient</span></div>
           </div>
         </div>
       </div>
@@ -4265,8 +5085,10 @@
         <div class="appt-feature"><i class="fas fa-comments"></i> Counselling Included</div>
       </div>
       <div class="nav-dropdown" style="display:inline-block; z-index: 10;">
-        <a href="javascript:void(0)" class="book-google-btn" id="bookGoogleFormBtn" style="display:inline-flex; align-items:center;">
-          <i class="fas fa-external-link-alt"></i> Book Appointment Now <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 8px;"></i>
+        <a href="javascript:void(0)" class="book-google-btn" id="bookGoogleFormBtn"
+          style="display:inline-flex; align-items:center;">
+          <i class="fas fa-external-link-alt"></i> Book Appointment Now <i class="fas fa-chevron-down"
+            style="font-size: 0.8em; margin-left: 8px;"></i>
         </a>
         <div class="nav-dropdown-content" style="left: 0; right: auto; min-width: 250px; text-align: left;">
           <a href="https://docs.google.com/forms/d/e/1FAIpQLScUwhHgwBxD6rYFw_G_GZKGCePkjrBqBoRSTR6Wa9SAQP_Sqg/viewform?usp=dialog"
@@ -4284,7 +5106,8 @@
   <section class="faq" id="faq">
     <div class="faq-container reveal">
       <div class="faq-header center">
-        <span class="section-tag"><i class="fas fa-question-circle" style="color: var(--teal);"></i> Common Questions</span>
+        <span class="section-tag"><i class="fas fa-question-circle" style="color: var(--teal);"></i> Common
+          Questions</span>
         <h2 class="section-title">Frequently Asked Questions</h2>
         <p class="section-sub">Find answers to the most common questions about homeopathic treatment and our clinic.</p>
       </div>
@@ -4339,7 +5162,8 @@
             <i class="fas fa-chevron-down"></i>
           </button>
           <div class="faq-answer">
-            <p>Consultation fees are strictly non-refundable. However, if you are unable to attend, you can reschedule your appointment maximum 1 time, provided you inform us at least 24 hours before your scheduled time.</p>
+            <p>Consultation fees are strictly non-refundable. However, if you are unable to attend, you can reschedule
+              your appointment maximum 1 time, provided you inform us at least 24 hours before your scheduled time.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -4404,10 +5228,11 @@
       <div class="map-frame" style="position: relative;">
         <iframe
           src="https://www.openstreetmap.org/export/embed.html?bbox=79.8950%2C23.1700%2C79.9400%2C23.2000&amp;layer=mapnik&amp;marker=23.1850%2C79.9190"
-          loading="lazy"
-          title="Clinic Location - Vijay Nagar, Jabalpur"></iframe>
+          loading="lazy" title="Clinic Location - Vijay Nagar, Jabalpur"></iframe>
         <div style="position: absolute; bottom: 16px; right: 16px; z-index: 10;">
-          <a href="https://maps.google.com/?q=23.1850,79.9190" target="_blank" rel="noopener noreferrer" class="btn-primary" style="padding: 10px 20px; font-size: 0.85rem; border-radius: 30px; box-shadow: var(--shadow-md); display: inline-flex; align-items: center; gap: 8px;">
+          <a href="https://maps.google.com/?q=23.1850,79.9190" target="_blank" rel="noopener noreferrer"
+            class="btn-primary"
+            style="padding: 10px 20px; font-size: 0.85rem; border-radius: 30px; box-shadow: var(--shadow-md); display: inline-flex; align-items: center; gap: 8px;">
             <i class="fas fa-location-arrow"></i> Open in Google Maps
           </a>
         </div>
@@ -4486,7 +5311,8 @@
   </a>
 
   <!-- WHATSAPP FLOAT -->
-  <a href="https://wa.me/917601839607?text=Hello%20Dr.%20Gunja%20Gupta%2C%20I%20would%20like%20to%20book%20an%20appointment." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+  <a href="https://wa.me/917601839607?text=Hello%20Dr.%20Gunja%20Gupta%2C%20I%20would%20like%20to%20book%20an%20appointment."
+    class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
     <i class="fab fa-whatsapp"></i>
     <span class="wa-tooltip">Chat with us on WhatsApp</span>
   </a>
@@ -4525,20 +5351,47 @@
       }
     });
 
-    // Mobile menu toggle
+    // Enhanced Mobile menu toggle
     function toggleMenu() {
       const m = document.getElementById('mobileMenu');
-      const isOpen = m.style.display === 'block';
-      m.style.display = isOpen ? 'none' : 'block';
+      const h = document.getElementById('hamburgerBtn');
+      if (!m) return;
+      const isOpen = m.classList.contains('open');
+      if (isOpen) {
+        m.classList.remove('open');
+        if (h) h.classList.remove('active');
+        document.body.style.overflow = '';
+      } else {
+        m.classList.add('open');
+        if (h) h.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
     }
 
     // Close mobile menu on outside click
     document.addEventListener('click', (e) => {
       const menu = document.getElementById('mobileMenu');
       const hamburger = document.getElementById('hamburgerBtn');
-      if (menu.style.display === 'block' && !menu.contains(e.target) && !hamburger.contains(e.target)) {
-        menu.style.display = 'none';
+      if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
+        toggleMenu();
       }
+    });
+
+    // Touch and click toggle for dropdown menus on mobile and desktop
+    document.querySelectorAll('.nav-dropdown > a').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const parent = this.parentElement;
+        const wasOpen = parent.classList.contains('open');
+        document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
+        if (!wasOpen) {
+          parent.classList.add('open');
+        }
+      });
+    });
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.nav-dropdown').forEach(d => d.classList.remove('open'));
     });
 
     // Scroll reveal with IntersectionObserver
@@ -4755,127 +5608,127 @@
     // Translation data: [selector, mode('t'=text,'h'=html), hindi]
     const i18n = [
       // Nav
-      ['.nav-links a[href="#home"]','t','होम'],
-      ['.nav-links a[href="#about"]','t','परिचय'],
-      ['.nav-links a[href="#services"]','t','सेवाएँ'],
-      ['.nav-links a[href="#testimonials"]','t','समीक्षा'],
-      ['.nav-links a[href="#contact"]','t','संपर्क'],
+      ['.nav-links a[href="#home"]', 't', 'होम'],
+      ['.nav-links a[href="#about"]', 't', 'परिचय'],
+      ['.nav-links a[href="#services"]', 't', 'सेवाएँ'],
+      ['.nav-links a[href="#testimonials"]', 't', 'समीक्षा'],
+      ['.nav-links a[href="#contact"]', 't', 'संपर्क'],
       // Mobile menu
-      ['#mobileMenu a[href="#home"]','t','होम'],
-      ['#mobileMenu a[href="#about"]','t','परिचय'],
-      ['#mobileMenu a[href="#services"]','t','सेवाएँ'],
-      ['#mobileMenu a[href="#testimonials"]','t','समीक्षा'],
-      ['#mobileMenu a[href="#contact"]','t','संपर्क'],
+      ['#mobileMenu a[href="#home"]', 't', 'होम'],
+      ['#mobileMenu a[href="#about"]', 't', 'परिचय'],
+      ['#mobileMenu a[href="#services"]', 't', 'सेवाएँ'],
+      ['#mobileMenu a[href="#testimonials"]', 't', 'समीक्षा'],
+      ['#mobileMenu a[href="#contact"]', 't', 'संपर्क'],
       // Hero
-      ['.hero-badge','h','<i class="fas fa-award"></i> जबलपुर की विश्वसनीय होम्योपैथी क्लिनिक'],
-      ['.hero h1','h','प्राकृतिक रूप से ठीक हों,<br/><em>पूर्ण जीवन जिएँ</em> —<br/>आपकी स्वस्थता यहाँ से शुरू'],
-      ['.hero-content > p','t','सौम्य, प्रभावी होम्योपैथिक उपचार और प्रोफेशनल काउंसलिंग। महिलाओं के स्वास्थ्य से लेकर त्वचा, बच्चों की समस्याओं से लेकर मानसिक स्वास्थ्य तक — हम लक्षण नहीं, मूल कारण का इलाज करते हैं।'],
-      ['.floating-badge.top','h','<i class="fas fa-star"></i> समग्र देखभाल'],
-      ['.floating-badge.bottom','h','<i class="fas fa-check-circle"></i> काउंसलिंग विशेषज्ञ'],
+      ['.hero-badge', 'h', '<i class="fas fa-award"></i> जबलपुर की विश्वसनीय होम्योपैथी क्लिनिक'],
+      ['.hero h1', 'h', 'प्राकृतिक रूप से ठीक हों,<br/><em>पूर्ण जीवन जिएँ</em> —<br/>आपकी स्वस्थता यहाँ से शुरू'],
+      ['.hero-content > p', 't', 'सौम्य, प्रभावी होम्योपैथिक उपचार और प्रोफेशनल काउंसलिंग। महिलाओं के स्वास्थ्य से लेकर त्वचा, बच्चों की समस्याओं से लेकर मानसिक स्वास्थ्य तक — हम लक्षण नहीं, मूल कारण का इलाज करते हैं।'],
+      ['.floating-badge.top', 'h', '<i class="fas fa-star"></i> समग्र देखभाल'],
+      ['.floating-badge.bottom', 'h', '<i class="fas fa-check-circle"></i> काउंसलिंग विशेषज्ञ'],
       // Hero card
-      ['#service-womens-health ~ .stat-label, .card-stats .stat-item:nth-child(1) .stat-label','t','होम्योपैथी'],
-      ['.card-stats .stat-item:nth-child(2) .stat-label','t','प्रमाणित'],
-      ['.card-stats .stat-item:nth-child(3) .stat-label','t','मनोविज्ञान'],
-      ['.card-stats .stat-item:nth-child(4) .stat-label','t','मिनट परामर्श'],
+      ['#service-womens-health ~ .stat-label, .card-stats .stat-item:nth-child(1) .stat-label', 't', 'होम्योपैथी'],
+      ['.card-stats .stat-item:nth-child(2) .stat-label', 't', 'प्रमाणित'],
+      ['.card-stats .stat-item:nth-child(3) .stat-label', 't', 'मनोविज्ञान'],
+      ['.card-stats .stat-item:nth-child(4) .stat-label', 't', 'मिनट परामर्श'],
       // Stats bar
-      ['.stats-bar .stat-counter:nth-child(1) .lbl','t','वर्षों का अनुभव'],
-      ['.stats-bar .stat-counter:nth-child(2) .lbl','t','स्टार रिव्यू'],
-      ['.stats-bar .stat-counter:nth-child(3) .lbl','t','मिनट विस्तृत परामर्श'],
-      ['.stats-bar .stat-counter:nth-child(4) .lbl','t','प्राकृतिक और सुरक्षित उपचार'],
+      ['.stats-bar .stat-counter:nth-child(1) .lbl', 't', 'वर्षों का अनुभव'],
+      ['.stats-bar .stat-counter:nth-child(2) .lbl', 't', 'स्टार रिव्यू'],
+      ['.stats-bar .stat-counter:nth-child(3) .lbl', 't', 'मिनट विस्तृत परामर्श'],
+      ['.stats-bar .stat-counter:nth-child(4) .lbl', 't', 'प्राकृतिक और सुरक्षित उपचार'],
       // About
-      ['#about .section-tag','h','<i class="fas fa-user-md" style="color: var(--teal);"></i> डॉक्टर के बारे में'],
-      ['#about .section-title','h','डॉ. गुंजा गुप्ता<br/>BHMS, CCH, MA (मनोविज्ञान)'],
-      ['#about .section-sub','t','एक संवेदनशील होम्योपैथिक चिकित्सक जो पूरे व्यक्ति — मन, शरीर और आत्मा — के उपचार में विश्वास करती हैं। डॉ. गुंजा क्लासिकल होम्योपैथी को प्रोफेशनल काउंसलिंग के साथ जोड़कर शारीरिक और भावनात्मक दोनों समस्याओं का समाधान करती हैं।'],
-      ['#about .qual-list li:nth-child(1)','h','<i class="fas fa-graduation-cap"></i> <strong>BHMS</strong> — बैचलर ऑफ होम्योपैथिक मेडिसिन एंड सर्जरी'],
-      ['#about .qual-list li:nth-child(2)','h','<i class="fas fa-certificate"></i> <strong>CCH</strong> — सर्टिफिकेट इन चाइल्ड हेल्थ'],
-      ['#about .qual-list li:nth-child(3)','h','<i class="fas fa-brain"></i> <strong>MA (मनोविज्ञान)</strong> — काउंसलिंग के लिए मनोविज्ञान में मास्टर्स'],
-      ['#about .qual-list li:nth-child(4)','h','<i class="fas fa-comments"></i> व्यवहार संबंधी मामलों के लिए होम्योपैथिक दवाओं के साथ काउंसलिंग'],
-      ['#about .qual-list li:nth-child(5)','h','<i class="fas fa-clock"></i> प्रत्येक परामर्श 30–40 मिनट का विस्तृत मूल्यांकन'],
-      ['#key-strengths-box h4','h','<i class="fas fa-star" style="color: var(--gold);"></i> मुख्य विशेषताएँ'],
-      ['#key-strengths-box p','t','मरीजों द्वारा डॉ. गुंजा के विस्तृत परामर्श, व्यक्तिगत उपचार योजनाओं और देखभाल के प्रति उनके करुणामय दृष्टिकोण की सराहना की जाती है। स्वास्थ्य संबंधी चिंताओं के अंतर्निहित कारणों को समझने और केवल लक्षणों के इलाज के बजाय समग्र, रोगी-केंद्रित देखभाल प्रदान करने की उनकी प्रतिबद्धता को अत्यधिक सराहा जाता है।'],
+      ['#about .section-tag', 'h', '<i class="fas fa-user-md" style="color: var(--teal);"></i> डॉक्टर के बारे में'],
+      ['#about .section-title', 'h', 'डॉ. गुंजा गुप्ता<br/>BHMS, CCH, MA (मनोविज्ञान)'],
+      ['#about .section-sub', 't', 'एक संवेदनशील होम्योपैथिक चिकित्सक जो पूरे व्यक्ति — मन, शरीर और आत्मा — के उपचार में विश्वास करती हैं। डॉ. गुंजा क्लासिकल होम्योपैथी को प्रोफेशनल काउंसलिंग के साथ जोड़कर शारीरिक और भावनात्मक दोनों समस्याओं का समाधान करती हैं।'],
+      ['#about .qual-list li:nth-child(1)', 'h', '<i class="fas fa-graduation-cap"></i> <strong>BHMS</strong> — बैचलर ऑफ होम्योपैथिक मेडिसिन एंड सर्जरी'],
+      ['#about .qual-list li:nth-child(2)', 'h', '<i class="fas fa-certificate"></i> <strong>CCH</strong> — सर्टिफिकेट इन चाइल्ड हेल्थ'],
+      ['#about .qual-list li:nth-child(3)', 'h', '<i class="fas fa-brain"></i> <strong>MA (मनोविज्ञान)</strong> — काउंसलिंग के लिए मनोविज्ञान में मास्टर्स'],
+      ['#about .qual-list li:nth-child(4)', 'h', '<i class="fas fa-comments"></i> व्यवहार संबंधी मामलों के लिए होम्योपैथिक दवाओं के साथ काउंसलिंग'],
+      ['#about .qual-list li:nth-child(5)', 'h', '<i class="fas fa-clock"></i> प्रत्येक परामर्श 30–40 मिनट का विस्तृत मूल्यांकन'],
+      ['#key-strengths-box h4', 'h', '<i class="fas fa-star" style="color: var(--gold);"></i> मुख्य विशेषताएँ'],
+      ['#key-strengths-box p', 't', 'मरीजों द्वारा डॉ. गुंजा के विस्तृत परामर्श, व्यक्तिगत उपचार योजनाओं और देखभाल के प्रति उनके करुणामय दृष्टिकोण की सराहना की जाती है। स्वास्थ्य संबंधी चिंताओं के अंतर्निहित कारणों को समझने और केवल लक्षणों के इलाज के बजाय समग्र, रोगी-केंद्रित देखभाल प्रदान करने की उनकी प्रतिबद्धता को अत्यधिक सराहा जाता है।'],
       // Services
-      ['#services > .center .section-tag','h','<i class="fas fa-hand-holding-medical" style="color: var(--teal);"></i> हम क्या इलाज करते हैं'],
-      ['#services > .center .section-title','t','हमारी होम्योपैथिक सेवाएँ'],
-      ['#services > .center .section-sub','t','विभिन्न स्वास्थ्य समस्याओं के लिए व्यापक, प्राकृतिक उपचार — व्यक्तिगत देखभाल और काउंसलिंग सहायता के साथ।'],
-      ['#service-womens-health h3','t','महिला स्वास्थ्य'],
-      ['#service-womens-health p','t','थायरॉयड विकार, अनियमित मासिक धर्म, PCOS, फाइब्रॉइड और फाइब्रोएडेनोमा का विशेषज्ञ उपचार। हर महिला की अनूठी जरूरतों के अनुसार सौम्य, प्राकृतिक उपचार।'],
-      ['#service-infertility h3','t','महिलाओं में बांझपन (Infertility)'],
-      ['#service-infertility p','t','महिलाओं में बांझपन, ओव्यूलेशन की समस्याएं, हार्मोनल असंतुलन और प्रजनन स्वास्थ्य के लिए विशेषज्ञ प्राकृतिक होम्योपैथिक उपचार।'],
-      ['#service-children h3','t','बच्चों का स्वास्थ्य'],
-      ['#service-children p','t','बच्चों की सुरक्षित, सौम्य देखभाल — कब्ज, व्यवहार संबंधी समस्याएँ, बार-बार खांसी और सर्दी, बुखार और पेट दर्द का प्राकृतिक उपचार।'],
-      ['#service-mental h3','t','मानसिक एवं मनोरोग विकार'],
-      ['#service-mental p','t','चिंता, अवसाद, नींद के विकार, पैनिक अटैक, डर/फोबिया और आघात या तनाव से संबंधित स्थितियों के लिए व्यावसायिक होम्योपैथिक देखभाल और काउंसलिंग।'],
-      ['#service-respiratory h3','t','श्वसन संबंधी विकार'],
-      ['#service-respiratory p','t','ब्रोंकाइटिस, अस्थमा, एलर्जी, गले में संक्रमण, बार-बार खांसी/सर्दी, सांस लेने में कठिनाई आदि।'],
-      ['#service-skin h3','t','त्वचा की देखभाल'],
-      ['#service-skin p','t','मुँहासे, पिंपल, डर्मेटाइटिस, मेलास्मा और सोरायसिस के लिए प्रभावी होम्योपैथिक उपचार — भीतर से इलाज करके स्थायी, साफ त्वचा।'],
-      ['#service-hair h3','t','बालों की देखभाल'],
-      ['#service-hair p','t','बालों के झड़ने के मूल कारण का सुरक्षित, प्राकृतिक होम्योपैथिक दवाओं से इलाज जो बिना दुष्प्रभाव के स्वस्थ बालों के विकास को बढ़ावा देती हैं।'],
-      ['#service-digestive h3','t','पाचन स्वास्थ्य'],
-      ['#service-digestive p','t','एसिडिटी, कब्ज, IBS और अन्य पाचन समस्याओं के लिए प्राकृतिक उपचार — स्थायी आंत स्वास्थ्य के लिए।'],
+      ['#services > .center .section-tag', 'h', '<i class="fas fa-hand-holding-medical" style="color: var(--teal);"></i> हम क्या इलाज करते हैं'],
+      ['#services > .center .section-title', 't', 'हमारी होम्योपैथिक सेवाएँ'],
+      ['#services > .center .section-sub', 't', 'विभिन्न स्वास्थ्य समस्याओं के लिए व्यापक, प्राकृतिक उपचार — व्यक्तिगत देखभाल और काउंसलिंग सहायता के साथ।'],
+      ['#service-womens-health h3', 't', 'महिला स्वास्थ्य'],
+      ['#service-womens-health p', 't', 'थायरॉयड विकार, अनियमित मासिक धर्म, PCOS, फाइब्रॉइड और फाइब्रोएडेनोमा का विशेषज्ञ उपचार। हर महिला की अनूठी जरूरतों के अनुसार सौम्य, प्राकृतिक उपचार।'],
+      ['#service-infertility h3', 't', 'महिलाओं में बांझपन (Infertility)'],
+      ['#service-infertility p', 't', 'महिलाओं में बांझपन, ओव्यूलेशन की समस्याएं, हार्मोनल असंतुलन और प्रजनन स्वास्थ्य के लिए विशेषज्ञ प्राकृतिक होम्योपैथिक उपचार।'],
+      ['#service-children h3', 't', 'बच्चों का स्वास्थ्य'],
+      ['#service-children p', 't', 'बच्चों की सुरक्षित, सौम्य देखभाल — कब्ज, व्यवहार संबंधी समस्याएँ, बार-बार खांसी और सर्दी, बुखार और पेट दर्द का प्राकृतिक उपचार।'],
+      ['#service-mental h3', 't', 'मानसिक एवं मनोरोग विकार'],
+      ['#service-mental p', 't', 'चिंता, अवसाद, नींद के विकार, पैनिक अटैक, डर/फोबिया और आघात या तनाव से संबंधित स्थितियों के लिए व्यावसायिक होम्योपैथिक देखभाल और काउंसलिंग।'],
+      ['#service-respiratory h3', 't', 'श्वसन संबंधी विकार'],
+      ['#service-respiratory p', 't', 'ब्रोंकाइटिस, अस्थमा, एलर्जी, गले में संक्रमण, बार-बार खांसी/सर्दी, सांस लेने में कठिनाई आदि।'],
+      ['#service-skin h3', 't', 'त्वचा की देखभाल'],
+      ['#service-skin p', 't', 'मुँहासे, पिंपल, डर्मेटाइटिस, मेलास्मा और सोरायसिस के लिए प्रभावी होम्योपैथिक उपचार — भीतर से इलाज करके स्थायी, साफ त्वचा।'],
+      ['#service-hair h3', 't', 'बालों की देखभाल'],
+      ['#service-hair p', 't', 'बालों के झड़ने के मूल कारण का सुरक्षित, प्राकृतिक होम्योपैथिक दवाओं से इलाज जो बिना दुष्प्रभाव के स्वस्थ बालों के विकास को बढ़ावा देती हैं।'],
+      ['#service-digestive h3', 't', 'पाचन स्वास्थ्य'],
+      ['#service-digestive p', 't', 'एसिडिटी, कब्ज, IBS और अन्य पाचन समस्याओं के लिए प्राकृतिक उपचार — स्थायी आंत स्वास्थ्य के लिए।'],
       // Why Us
-      ['#why .section-tag','h','<i class="fas fa-award" style="color: #fbbf24; margin-right: 6px;"></i> हमें क्यों चुनें'],
-      ['#why .section-title','t','डॉ. गुंजा गुप्ता को क्यों चुनें?'],
-      ['#why .section-sub','t','क्योंकि हम केवल लक्षणों को नहीं, बल्कि बीमारी के मूल कारण को ठीक करते हैं। 13+ वर्षों के होम्योपैथिक अनुभव और मनोवैज्ञानिक काउंसलिंग के साथ, डॉ. गुंजा 30–40 मिनट के विस्तृत परामर्श में हर मरीज को व्यक्तिगत, सौम्य और स्थायी उपचार प्रदान करती हैं।'],
-      ['#why .why-card:nth-child(1) h3','t','100% प्राकृतिक एवं सुरक्षित'],
-      ['#why .why-card:nth-child(1) p','t','बिना किसी दुष्प्रभाव के शरीर की स्वाभाविक रोग-प्रतिरोधक क्षमता को जागृत करने वाली सौम्य होम्योपैथिक दवाएं।'],
-      ['#why .why-card:nth-child(2) h3','t','दवाएं + मनोवैज्ञानिक काउंसलिंग'],
-      ['#why .why-card:nth-child(2) p','t','शारीरिक लक्षणों के साथ-साथ भावनात्मक और मानसिक तनाव के समाधान के लिए होम्योपैथी और काउंसलिंग का विशेष संगम।'],
-      ['#why .why-card:nth-child(3) h3','t','30–40 मिनट विस्तृत परामर्श'],
-      ['#why .why-card:nth-child(3) p','t','प्रत्येक मरीज के स्वास्थ्य इतिहास और जीवनशैली को गहराई से समझने के लिए एक संपूर्ण और समर्पित परामर्श सत्र।'],
-      ['#why .why-card:nth-child(4) h3','t','मूल कारण से स्थायी उपचार'],
-      ['#why .why-card:nth-child(4) p','t','केवल लक्षणों को दबाने के बजाय बीमारी के अंतर्निहित कारण को समाप्त करके स्थायी और दीर्घकालिक राहत।'],
+      ['#why .section-tag', 'h', '<i class="fas fa-award" style="color: #fbbf24; margin-right: 6px;"></i> हमें क्यों चुनें'],
+      ['#why .section-title', 't', 'डॉ. गुंजा गुप्ता को क्यों चुनें?'],
+      ['#why .section-sub', 't', 'क्योंकि हम केवल लक्षणों को नहीं, बल्कि बीमारी के मूल कारण को ठीक करते हैं। 13+ वर्षों के होम्योपैथिक अनुभव और मनोवैज्ञानिक काउंसलिंग के साथ, डॉ. गुंजा 30–40 मिनट के विस्तृत परामर्श में हर मरीज को व्यक्तिगत, सौम्य और स्थायी उपचार प्रदान करती हैं।'],
+      ['#why .why-card:nth-child(1) h3', 't', '100% प्राकृतिक एवं सुरक्षित'],
+      ['#why .why-card:nth-child(1) p', 't', 'बिना किसी दुष्प्रभाव के शरीर की स्वाभाविक रोग-प्रतिरोधक क्षमता को जागृत करने वाली सौम्य होम्योपैथिक दवाएं।'],
+      ['#why .why-card:nth-child(2) h3', 't', 'दवाएं + मनोवैज्ञानिक काउंसलिंग'],
+      ['#why .why-card:nth-child(2) p', 't', 'शारीरिक लक्षणों के साथ-साथ भावनात्मक और मानसिक तनाव के समाधान के लिए होम्योपैथी और काउंसलिंग का विशेष संगम।'],
+      ['#why .why-card:nth-child(3) h3', 't', '30–40 मिनट विस्तृत परामर्श'],
+      ['#why .why-card:nth-child(3) p', 't', 'प्रत्येक मरीज के स्वास्थ्य इतिहास और जीवनशैली को गहराई से समझने के लिए एक संपूर्ण और समर्पित परामर्श सत्र।'],
+      ['#why .why-card:nth-child(4) h3', 't', 'मूल कारण से स्थायी उपचार'],
+      ['#why .why-card:nth-child(4) p', 't', 'केवल लक्षणों को दबाने के बजाय बीमारी के अंतर्निहित कारण को समाप्त करके स्थायी और दीर्घकालिक राहत।'],
       // Safe Hands
-      ['#safehands h2','h','आप <span>सुरक्षित हाथों</span> में हैं'],
-      ['.safe-hands-quote','t','"सबसे अच्छी होम्योपैथी क्लिनिक जहाँ मैंने इलाज कराया है। डॉ. गुंजा मैम बहुत विनम्र और अनुभवी हैं। उन्होंने हमें परिवार की तरह माना — धैर्य से सुना, हमारी चिंताओं को समझा, और सबसे प्रभावी प्राकृतिक उपचार दिया। उनकी काउंसलिंग भी बहुत सहायक है। होम्योपैथिक उपचार के लिए अत्यधिक अनुशंसित!"'],
-      ['.progress-bars .progress-item:nth-child(1) strong','t','उपचार'],
-      ['.progress-bars .progress-item:nth-child(2) strong','t','रोगी देखभाल'],
-      ['.progress-bars .progress-item:nth-child(3) strong','t','रोगी संतुष्टि'],
-      ['.safe-hands-visual .trust-card:nth-child(1) h4','t','विशेषज्ञ होम्योपैथ'],
-      ['.safe-hands-visual .trust-card:nth-child(1) p','t','BHMS, CCH प्रमाणित, मनोविज्ञान में मास्टर्स — समग्र रोगी देखभाल के लिए।'],
-      ['.safe-hands-visual .trust-card:nth-child(2) h4','t','100% सुरक्षित और प्राकृतिक'],
-      ['.safe-hands-visual .trust-card:nth-child(2) p','t','शून्य दुष्प्रभाव — सभी उम्र के लिए उपयुक्त सौम्य होम्योपैथिक दवाएँ।'],
-      ['.safe-hands-visual .trust-card:nth-child(3) h4','t','संवेदनशील काउंसलिंग'],
-      ['.safe-hands-visual .trust-card:nth-child(3) p','t','हर मरीज को समर्पित समय, सहानुभूति और प्रोफेशनल काउंसलिंग सहायता मिलती है।'],
-      ['.safe-hands-visual .trust-card:nth-child(4) h4','t','मूल कारण उपचार'],
-      ['.safe-hands-visual .trust-card:nth-child(4) p','t','हम लक्षण नहीं दबाते — स्थायी राहत के लिए अंतर्निहित कारण का इलाज करते हैं।'],
+      ['#safehands h2', 'h', 'आप <span>सुरक्षित हाथों</span> में हैं'],
+      ['.safe-hands-quote', 't', '"सबसे अच्छी होम्योपैथी क्लिनिक जहाँ मैंने इलाज कराया है। डॉ. गुंजा मैम बहुत विनम्र और अनुभवी हैं। उन्होंने हमें परिवार की तरह माना — धैर्य से सुना, हमारी चिंताओं को समझा, और सबसे प्रभावी प्राकृतिक उपचार दिया। उनकी काउंसलिंग भी बहुत सहायक है। होम्योपैथिक उपचार के लिए अत्यधिक अनुशंसित!"'],
+      ['.progress-bars .progress-item:nth-child(1) strong', 't', 'उपचार'],
+      ['.progress-bars .progress-item:nth-child(2) strong', 't', 'रोगी देखभाल'],
+      ['.progress-bars .progress-item:nth-child(3) strong', 't', 'रोगी संतुष्टि'],
+      ['.safe-hands-visual .trust-card:nth-child(1) h4', 't', 'विशेषज्ञ होम्योपैथ'],
+      ['.safe-hands-visual .trust-card:nth-child(1) p', 't', 'BHMS, CCH प्रमाणित, मनोविज्ञान में मास्टर्स — समग्र रोगी देखभाल के लिए।'],
+      ['.safe-hands-visual .trust-card:nth-child(2) h4', 't', '100% सुरक्षित और प्राकृतिक'],
+      ['.safe-hands-visual .trust-card:nth-child(2) p', 't', 'शून्य दुष्प्रभाव — सभी उम्र के लिए उपयुक्त सौम्य होम्योपैथिक दवाएँ।'],
+      ['.safe-hands-visual .trust-card:nth-child(3) h4', 't', 'संवेदनशील काउंसलिंग'],
+      ['.safe-hands-visual .trust-card:nth-child(3) p', 't', 'हर मरीज को समर्पित समय, सहानुभूति और प्रोफेशनल काउंसलिंग सहायता मिलती है।'],
+      ['.safe-hands-visual .trust-card:nth-child(4) h4', 't', 'मूल कारण उपचार'],
+      ['.safe-hands-visual .trust-card:nth-child(4) p', 't', 'हम लक्षण नहीं दबाते — स्थायी राहत के लिए अंतर्निहित कारण का इलाज करते हैं।'],
       // Testimonials header
-      ['#testimonials > .center .section-tag','h','<i class="fas fa-star" style="color: var(--gold);"></i> रोगी सफलता'],
-      ['#testimonials > .center .section-title','t','वास्तविक परिणाम। वास्तविक कहानियाँ।'],
-      ['#testimonials > .center .section-sub','t','हमारे रोगियों के शब्दों और परिणामों से प्राकृतिक उपचार की शक्ति का अनुभव करें।'],
-      ['.pf-stat:nth-child(1) .pf-stat-label','t','औसत रेटिंग'],
-      ['.pf-stat:nth-child(2) .pf-stat-label','t','प्लेटफॉर्म पर विश्वास'],
+      ['#testimonials > .center .section-tag', 'h', '<i class="fas fa-star" style="color: var(--gold);"></i> रोगी सफलता'],
+      ['#testimonials > .center .section-title', 't', 'वास्तविक परिणाम। वास्तविक कहानियाँ।'],
+      ['#testimonials > .center .section-sub', 't', 'हमारे रोगियों के शब्दों और परिणामों से प्राकृतिक उपचार की शक्ति का अनुभव करें।'],
+      ['.pf-stat:nth-child(1) .pf-stat-label', 't', 'औसत रेटिंग'],
+      ['.pf-stat:nth-child(2) .pf-stat-label', 't', 'प्लेटफॉर्म पर विश्वास'],
       // Appointment CTA
-      ['#appointment .section-tag','h','<i class="fas fa-calendar-check" style="color: var(--teal);"></i> शुरू करें'],
-      ['#appointment .section-title','t','अपना अपॉइंटमेंट बुक करें'],
-      ['#appointment .section-sub','t','नीचे क्लिक करके अपॉइंटमेंट फॉर्म भरें। हर परामर्श 30–40 मिनट का विस्तृत सत्र है।'],
-      ['.appt-cta-box h3','t','अपना परामर्श शेड्यूल करें'],
-      ['.appt-cta-box > p','t','अपने विवरण और पसंदीदा समय के साथ एक छोटा फॉर्म भरें। हम जल्द से जल्द आपके अपॉइंटमेंट की पुष्टि करेंगे।'],
-      ['.appt-feature:nth-child(1)','h','<i class="fas fa-clock"></i> 30–40 मिनट सत्र'],
-      ['.appt-feature:nth-child(2)','h','<i class="fas fa-leaf"></i> 100% प्राकृतिक उपचार'],
-      ['.appt-feature:nth-child(3)','h','<i class="fas fa-comments"></i> काउंसलिंग शामिल'],
+      ['#appointment .section-tag', 'h', '<i class="fas fa-calendar-check" style="color: var(--teal);"></i> शुरू करें'],
+      ['#appointment .section-title', 't', 'अपना अपॉइंटमेंट बुक करें'],
+      ['#appointment .section-sub', 't', 'नीचे क्लिक करके अपॉइंटमेंट फॉर्म भरें। हर परामर्श 30–40 मिनट का विस्तृत सत्र है।'],
+      ['.appt-cta-box h3', 't', 'अपना परामर्श शेड्यूल करें'],
+      ['.appt-cta-box > p', 't', 'अपने विवरण और पसंदीदा समय के साथ एक छोटा फॉर्म भरें। हम जल्द से जल्द आपके अपॉइंटमेंट की पुष्टि करेंगे।'],
+      ['.appt-feature:nth-child(1)', 'h', '<i class="fas fa-clock"></i> 30–40 मिनट सत्र'],
+      ['.appt-feature:nth-child(2)', 'h', '<i class="fas fa-leaf"></i> 100% प्राकृतिक उपचार'],
+      ['.appt-feature:nth-child(3)', 'h', '<i class="fas fa-comments"></i> काउंसलिंग शामिल'],
       // FAQ
-      ['#faq .section-tag','h','<i class="fas fa-question-circle" style="color: var(--teal);"></i> सामान्य प्रश्न'],
-      ['#faq .section-title','t','अक्सर पूछे जाने वाले प्रश्न'],
-      ['#faq .section-sub','t','होम्योपैथिक उपचार और हमारी क्लिनिक के बारे में सबसे आम प्रश्नों के उत्तर खोजें।'],
-      ['.faq-item:nth-child(1) .faq-question span','t','क्या होम्योपैथिक दवाएँ बच्चों और गर्भवती महिलाओं के लिए सुरक्षित हैं?'],
-      ['.faq-item:nth-child(1) .faq-answer p','t','हाँ, बिल्कुल। होम्योपैथिक दवाएँ अत्यधिक तनुकृत और 100% प्राकृतिक हैं, जो उन्हें पूरी तरह से सुरक्षित, सौम्य और दुष्प्रभाव-मुक्त बनाती हैं। ये शिशुओं, बढ़ते बच्चों, गर्भवती महिलाओं और बुजुर्गों के लिए उपयुक्त हैं।'],
-      ['.faq-item:nth-child(2) .faq-question span','t','परामर्श में कितना समय लगता है?'],
-      ['.faq-item:nth-child(2) .faq-answer p','t','हम विस्तृत, समग्र देखभाल पर गर्व करते हैं। डॉ. गुंजा गुप्ता के साथ एक सामान्य परामर्श लगभग 30 से 40 मिनट का होता है। इससे वे शारीरिक लक्षणों और किसी भी अंतर्निहित भावनात्मक चिंताओं के मूल कारण को समझ पाती हैं।'],
-      ['.faq-item:nth-child(3) .faq-question span','t','क्या आप ऑनलाइन या वीडियो परामर्श प्रदान करते हैं?'],
-      ['.faq-item:nth-child(3) .faq-answer p','t','हाँ, हम करते हैं। पहले परामर्श के लिए व्यक्तिगत मिलना बेहतर है, लेकिन हम बाहर के मरीजों और फॉलो-अप के लिए फोन और वीडियो परामर्श प्रदान करते हैं। हम दवाइयाँ सीधे आपके घर भी भेज सकते हैं।'],
-      ['.faq-item:nth-child(4) .faq-question span','t','आप काउंसलिंग से कौन-सी व्यवहार संबंधी समस्याओं का इलाज करते हैं?'],
-      ['.faq-item:nth-child(4) .faq-answer p','t','मनोविज्ञान में मास्टर्स डिग्री के साथ, डॉ. गुंजा गुप्ता चिंता, पैनिक अटैक, अवसाद, तनाव प्रबंधन और बच्चों की व्यवहार संबंधी समस्याओं के लिए होम्योपैथिक दवाओं के साथ प्रोफेशनल काउंसलिंग को जोड़ती हैं।'],
+      ['#faq .section-tag', 'h', '<i class="fas fa-question-circle" style="color: var(--teal);"></i> सामान्य प्रश्न'],
+      ['#faq .section-title', 't', 'अक्सर पूछे जाने वाले प्रश्न'],
+      ['#faq .section-sub', 't', 'होम्योपैथिक उपचार और हमारी क्लिनिक के बारे में सबसे आम प्रश्नों के उत्तर खोजें।'],
+      ['.faq-item:nth-child(1) .faq-question span', 't', 'क्या होम्योपैथिक दवाएँ बच्चों और गर्भवती महिलाओं के लिए सुरक्षित हैं?'],
+      ['.faq-item:nth-child(1) .faq-answer p', 't', 'हाँ, बिल्कुल। होम्योपैथिक दवाएँ अत्यधिक तनुकृत और 100% प्राकृतिक हैं, जो उन्हें पूरी तरह से सुरक्षित, सौम्य और दुष्प्रभाव-मुक्त बनाती हैं। ये शिशुओं, बढ़ते बच्चों, गर्भवती महिलाओं और बुजुर्गों के लिए उपयुक्त हैं।'],
+      ['.faq-item:nth-child(2) .faq-question span', 't', 'परामर्श में कितना समय लगता है?'],
+      ['.faq-item:nth-child(2) .faq-answer p', 't', 'हम विस्तृत, समग्र देखभाल पर गर्व करते हैं। डॉ. गुंजा गुप्ता के साथ एक सामान्य परामर्श लगभग 30 से 40 मिनट का होता है। इससे वे शारीरिक लक्षणों और किसी भी अंतर्निहित भावनात्मक चिंताओं के मूल कारण को समझ पाती हैं।'],
+      ['.faq-item:nth-child(3) .faq-question span', 't', 'क्या आप ऑनलाइन या वीडियो परामर्श प्रदान करते हैं?'],
+      ['.faq-item:nth-child(3) .faq-answer p', 't', 'हाँ, हम करते हैं। पहले परामर्श के लिए व्यक्तिगत मिलना बेहतर है, लेकिन हम बाहर के मरीजों और फॉलो-अप के लिए फोन और वीडियो परामर्श प्रदान करते हैं। हम दवाइयाँ सीधे आपके घर भी भेज सकते हैं।'],
+      ['.faq-item:nth-child(4) .faq-question span', 't', 'आप काउंसलिंग से कौन-सी व्यवहार संबंधी समस्याओं का इलाज करते हैं?'],
+      ['.faq-item:nth-child(4) .faq-answer p', 't', 'मनोविज्ञान में मास्टर्स डिग्री के साथ, डॉ. गुंजा गुप्ता चिंता, पैनिक अटैक, अवसाद, तनाव प्रबंधन और बच्चों की व्यवहार संबंधी समस्याओं के लिए होम्योपैथिक दवाओं के साथ प्रोफेशनल काउंसलिंग को जोड़ती हैं।'],
       // Contact
-      ['#contact .section-tag','h','<i class="fas fa-map-marker-alt" style="color: var(--teal);"></i> हमें खोजें'],
-      ['#contact .section-title','t','क्लिनिक पर आएँ'],
-      ['.contact-info h3','t','संपर्क करें'],
+      ['#contact .section-tag', 'h', '<i class="fas fa-map-marker-alt" style="color: var(--teal);"></i> हमें खोजें'],
+      ['#contact .section-title', 't', 'क्लिनिक पर आएँ'],
+      ['.contact-info h3', 't', 'संपर्क करें'],
       // Footer
-      ['.footer-brand > p','t','होम्योपैथी और प्रोफेशनल काउंसलिंग द्वारा प्राकृतिक उपचार। हम लक्षण नहीं — मूल कारण का इलाज करते हैं — स्थायी स्वास्थ्य के लिए।'],
-      ['.footer-col:nth-child(2) h4','t','त्वरित लिंक'],
-      ['.footer-col:nth-child(3) h4','t','सेवाएँ'],
-      ['.footer-col:nth-child(4) h4','t','संपर्क'],
-      ['.footer-bottom span:nth-child(2)','t','प्राकृतिक रूप से ठीक हों, पूर्ण जीवन जिएँ'],
+      ['.footer-brand > p', 't', 'होम्योपैथी और प्रोफेशनल काउंसलिंग द्वारा प्राकृतिक उपचार। हम लक्षण नहीं — मूल कारण का इलाज करते हैं — स्थायी स्वास्थ्य के लिए।'],
+      ['.footer-col:nth-child(2) h4', 't', 'त्वरित लिंक'],
+      ['.footer-col:nth-child(3) h4', 't', 'सेवाएँ'],
+      ['.footer-col:nth-child(4) h4', 't', 'संपर्क'],
+      ['.footer-bottom span:nth-child(2)', 't', 'प्राकृतिक रूप से ठीक हों, पूर्ण जीवन जिएँ'],
     ];
 
     // Store original content
@@ -5096,7 +5949,7 @@
 
     // ══════ ANIMATE-UI: RIPPLE CLICK EFFECT ══════
     document.querySelectorAll('.btn-primary, .btn-outline, .book-google-btn, .nav-cta').forEach(btn => {
-      btn.addEventListener('click', function(e) {
+      btn.addEventListener('click', function (e) {
         const rect = this.getBoundingClientRect();
         const ripple = document.createElement('span');
         ripple.classList.add('ripple-effect');
