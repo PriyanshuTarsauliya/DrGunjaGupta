@@ -2,7 +2,7 @@
   "name": "Dr. Gunja Gupta — Homeopathy & Wellness Clinic",
   "short_name": "Dr. Gunja Gupta",
   "description": "Trusted homeopathy clinic in Jabalpur. Natural treatment with professional counselling by Dr. Gunja Gupta (BHMS, CCH, MA Psychology).",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0d9488",
